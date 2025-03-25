@@ -6,7 +6,7 @@
 #    By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/25 10:32:25 by alvera-v          #+#    #+#              #
-#    Updated: 2025/03/25 12:36:30 by alvera-v         ###   ########.fr        #
+#    Updated: 2025/03/25 12:42:20 by alvera-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,10 @@ SOURCES =	push_swap.c \
 
 MY_OBJECTS = $(SOURCES:.c=.o)
 
-LIBFT_DIR = ./Libft-main
-FT_PRINTF_DIR = ./Libft_printf-main
-
 all: $(NAME)
 
 $(NAME): $(MY_OBJECTS)
-	@make -C $(LIBFT_DIR)
-	@make -C $(FT_PRINTF_DIR)
-	$(CC) $(CFLAGS) -o $(NAME) $(MY_OBJECTS) L$(LIBFT_DIR) -lft L$(FT_PRINTF_DIR) -lftprintf
+	$(CC) $(CFLAGS) -o $(NAME) $(MY_OBJECTS)
 
 clean:
 	rm -f $(MY_OBJECTS)

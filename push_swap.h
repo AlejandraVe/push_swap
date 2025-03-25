@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:05:05 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/03/25 12:30:45 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/03/25 12:44:45 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@
 	int array[1000];
 };*/
 int	main(int argc, char *argv[]);
+int	ft_atoi(const char *nptr);
+int	ft_isdigit(int c);
 
 #endif
