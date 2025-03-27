@@ -19,9 +19,13 @@
 # include "Libft_printf-main/ft_printf.h"
 # include "Libft-main/libft.h"
 
-/*typedef struct a {
-	int array[1000];
-};*/
+typedef struct stack {
+	int value;
+    int index;
+    struct stack    *next; // el último del stack, su next debe apuntar a nulo o void.
+    struct stack    *prev; // tengo que comprobar p¡con prev, que el prev del valor al que estoy apuntando sea NULL
+    struct stack    *target_node;
+} Stack;
 int	main(int argc, char *argv[]);
 int	ft_atoi(const char *nptr);
 int	ft_isdigit(int c);
