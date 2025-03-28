@@ -12,22 +12,32 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h> // Includes int-max and int-min
 # include <stddef.h> // Includes typedef
-# include "Libft_printf-main/ft_printf.h"
-# include "Libft-main/libft.h"
 
 typedef struct stack {
-	int value;
-    int index;
+	int             value;
+    int             index;
+    int             push_cost;
+    bool            above_median;
+    bool            cheapest;
     struct stack    *next; // el último del stack, su next debe apuntar a nulo o void.
     struct stack    *prev; // tengo que comprobar p¡con prev, que el prev del valor al que estoy apuntando sea NULL
     struct stack    *target_node;
 } Stack;
-int	main(int argc, char *argv[]);
-int	ft_atoi(const char *nptr);
-int	ft_isdigit(int c);
+int     main(int argc, char *argv[]);
+int     ft_atoi(const char *nptr);
+int     ft_isdigit(int c);
+void	swap(Stack stack);
+char	**ft_split(char const *s, char c);
+size_t	ft_strlen(char const *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+bool    check_syntax(char *argv[]);
+//void	sort_numbers(Stack stack_a, Stack stack_b);
+
+#endif
 
 #endif
