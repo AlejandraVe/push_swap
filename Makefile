@@ -18,8 +18,7 @@ AR = ar rcs
 RM = rm -f
 
 SOURCES =	push_swap.c \
-			push_swap_utils.c \
-			main.c
+			push_swap_utils.c 
 
 MY_OBJECTS = $(SOURCES:.c=.o)
 
