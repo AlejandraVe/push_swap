@@ -35,7 +35,7 @@ void	swap(Stack stack);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(char const *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-bool    check_syntax(char *argv[]);
+bool	check_char(char c);
 //void	sort_numbers(Stack stack_a, Stack stack_b);
 
 #endif
