@@ -45,12 +45,11 @@ int main(int argc, char *argv[])
 			j++;
 		}
 		string = ft_split(argv[1], ' ');
-		printf("%d\n", syntax);
 	}
 	else if (argc > 2)
 	{
 		int n = 1;
-		int o = 0;
+		int i = 0;
 		int counter = 0;
 		int	number_of_string;
 
@@ -61,11 +60,11 @@ int main(int argc, char *argv[])
 	//		printf("%c\n", argv[2][i]);
 		while (argv[n])
 		{
-			string[o] = argv[n];
+			string[i] = argv[n];
 			counter = 0;
 			while (argv[n][counter])
 			{
-				syntax = check_char(string[o][counter]);
+				syntax = check_char(string[i][counter]);
 				if (syntax == false)
 				{
 					printf("Error\n");
@@ -74,26 +73,26 @@ int main(int argc, char *argv[])
 				}
 				counter++;
 			}
-			o++;
+			i++;
 			n++;
 		}
-		string[o] = '\0';
+		string[i] = '\0';
 	//	ft_bzero(string[o + 1], ft_strlen(argv[0]));
 	}
-	for (int a = 0; string[a]; a++)
-		printf("%s \n", string[a]);
-	printf("Syntax after checking if it's one string or several: %d\n", syntax);
 	if (syntax == true)
 	{
-		int i = 1;
-		while (j + 1 > i || argc > i) // mientras que el numero de argumentos - 1 sea mayor que 0, guardaré los argumentos en el stack temp
+		int number_of_strings;
+
+		number_of_strings = count_string(string) - 1;
+		j = 0;
+		while (j <= number_of_strings)
 		{
-			temp->value = ft_atoi(argv[i]);
+			temp->value = ft_atoi(string[number_of_strings]);
 			temp->next = stack_a;
 			stack_a = temp;
-	//		printf("%d\n", stack_a->value);
-			i++;
+			number_of_strings--;
 		}
+		printf("%d\n", stack_a->value);
 	}
 //	sort_numbers(stack_a, stack_b);
 	free (temp);
@@ -132,5 +131,3 @@ bool	check_char(char c)
 void	sort_numbers(Stack stack_a, Stack stack_b)
 {
 }*/
-
-
