@@ -9,7 +9,6 @@
 /*   Updated: 2025/03/26 10:32:43 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 #include <stdio.h>
 
@@ -79,8 +78,12 @@ int main(int argc, char *argv[])
 		string[i] = '\0';
 	//	ft_bzero(string[o + 1], ft_strlen(argv[0]));
 	}
+	printf("%d\n", syntax);
+	syntax = check_duplicates(string);
+	printf("chck dupo: %d\n", syntax);
 	if (syntax == true)
 	{
+		// I need a function that checks out for duplicates and for integer overflowing
 		int number_of_strings;
 
 		number_of_strings = count_string(string) - 1;
@@ -107,26 +110,41 @@ bool	check_char(char c)
 		return (0);
 }
 
-/*bool    check_syntax(char *argv)
+bool    check_duplicates(char **s)
 {
-	int		i;
-//	int		j;
-	bool	ret;
+	int i;
+	int	j;
+	int ret;
+	i = count_string(s);
+	int *numbers = NULL;
 
-	ret = false;
-	i = 0;
-//	j = 0;
-	while (argv[i])
+	numbers = (int *)malloc((i + 1) * sizeof(int));
+
+	for (int o = 0; s[o]; o++)
 	{
-		if ((ft_isdigit(argv[i]) || (argv[i] == ' ' || argv[i] == '-' || argv[i] == '\t'
-			|| argv[i] == '\n' || argv[i] == '\r' || argv[i] == '\f' || argv[i] == '\v')))
+		numbers[o] = ft_atoi(s[o]);
+		printf("%d\n", numbers[o]);
+	}
+	i = 0;
+	ret = true;
+	while (numbers[i])
+	{
+		j = 1;
+		while (numbers[i] != numbers[i + j] && numbers[i + j])
 		{
-			ret = true;
+			j++;
+		}
+		if (numbers[i] == numbers[i + j])
+		{
+			ret = false;
+			break;
 		}
 		i++;
 	}
+	printf("%d\n", ret);
 	return (ret);
 }
+/*
 
 void	sort_numbers(Stack stack_a, Stack stack_b)
 {
