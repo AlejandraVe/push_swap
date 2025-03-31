@@ -23,8 +23,8 @@ int	ft_isdigit(int c)
 
 int	ft_atoi(const char *nptr)
 {
-	int	ret;
-	int	neg;
+	long	ret;
+	long	neg;
 
 	ret = 0;
 	neg = 1;
@@ -38,9 +38,11 @@ int	ft_atoi(const char *nptr)
 	}
 	while (*nptr >= '0' && *nptr <= '9')
 	{
-		ret = ret * 10 + (*nptr - 48);
+		ret = ret * 10 + ((long)*nptr - 48);
 		nptr++;
 	}
+	if ((ret * neg) > INT_MAX || (ret * neg) < INT_MIN)
+		return (0);
 	return (ret * neg);
 }
 
