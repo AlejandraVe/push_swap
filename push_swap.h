@@ -36,8 +36,12 @@ char	**ft_split(char const *s, char c);
 size_t	ft_strlen(char const *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 bool	check_char(char c);
+int     count_string(char **s);
+//char	*ft_strtrim(char const *s1, char const *set);
+//void	*ft_calloc(size_t nmeb, size_t size);
+//char	*ft_strdup(const char *s);
+void	ft_bzero(void *s, size_t n);
+//size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 //void	sort_numbers(Stack stack_a, Stack stack_b);
-
-#endif
 
 #endif
