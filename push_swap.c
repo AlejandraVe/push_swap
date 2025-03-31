@@ -19,10 +19,9 @@ int main(int argc, char *argv[])
  //   Stack   *stack_b;
     Stack   *temp;
 	bool	syntax; // bool can be either true or false
-    int		i;
+	char	**string = NULL; // doble puntero porque es un array de strings
 	int		j;
 
-	i = 1;
 	j = 0;
 	syntax = true;
 	temp = (Stack *)malloc(sizeof(Stack));
@@ -45,27 +44,28 @@ int main(int argc, char *argv[])
 			};
 			j++;
 		}
-		char	**string; // doble puntero porque es un array de strings
 		string = ft_split(argv[1], ' ');
-		j = 0;
-		while (string[j] && syntax == true)
-		{
-			argv[j + 1] = string[j]; // I store every string of array "string" in argv[j + 1], so that it's in position 1
-			j++;
-		}
-			//printf("%s\n", argv[j + 1]);
+		printf("%d\n", syntax);
 	}
 	else if (argc > 2)
 	{
 		int n = 1;
+		int o = 0;
 		int counter = 0;
+		int	number_of_string;
 
-		while (argv[n][counter])
+		number_of_string = count_string(argv) - 1;
+		string = (char **)malloc((number_of_string + 1) * sizeof(char *));
+
+	//	for (int i = 0; argv[2][i]; i++)
+	//		printf("%c\n", argv[2][i]);
+		while (argv[n])
 		{
+			string[o] = argv[n];
+			counter = 0;
 			while (argv[n][counter])
 			{
-				syntax = check_char(argv[n][counter]);
-				printf("%d\n", syntax);
+				syntax = check_char(string[o][counter]);
 				if (syntax == false)
 				{
 					printf("Error\n");
@@ -74,11 +74,18 @@ int main(int argc, char *argv[])
 				}
 				counter++;
 			}
+			o++;
 			n++;
 		}
+		string[o] = '\0';
+	//	ft_bzero(string[o + 1], ft_strlen(argv[0]));
 	}
+	for (int a = 0; string[a]; a++)
+		printf("%s \n", string[a]);
+	printf("Syntax after checking if it's one string or several: %d\n", syntax);
 	if (syntax == true)
 	{
+		int i = 1;
 		while (j + 1 > i || argc > i) // mientras que el numero de argumentos - 1 sea mayor que 0, guardaré los argumentos en el stack temp
 		{
 			temp->value = ft_atoi(argv[i]);
