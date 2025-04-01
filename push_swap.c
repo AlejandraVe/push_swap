@@ -15,7 +15,7 @@
 int main(int argc, char *argv[])
 {
     Stack   *stack_a;
- //   Stack   *stack_b;
+    Stack   *stack_b;
     Stack   *temp;
 	bool	syntax; // bool can be either true or false
 	char	**string = NULL; // doble puntero porque es un array de strings
@@ -25,65 +25,17 @@ int main(int argc, char *argv[])
 	syntax = true;
 	temp = (Stack *)malloc(sizeof(Stack));
 	stack_a = (Stack *)malloc(sizeof(Stack));
-//	stack_b = (Stack *)malloc(sizeof(Stack));
-	if (argc < 2 || !argv[1][0])
+	stack_b = (Stack *)malloc(sizeof(Stack));
+	string = handle_errors(argc, argv);
+	if (!string)
+	{
+		printf("Error\n");
+		free(stack_a);
+		free(temp);
 		return (1);
-	else if (argc == 2) // this means the given numbers are a string, so we need to split it
-	{
-		if (argv[1][j] == '"')
-			j++;
-		while (argv[1][j])
-		{
-			syntax = check_char(argv[1][j]);
-			if (syntax == false)
-			{
-				printf("Error\n");
-				return (1);
-				break;
-			};
-			j++;
-		}
-		string = ft_split(argv[1], ' ');
 	}
-	else if (argc > 2)
+	if ((syntax = check_duplicates(string)) == true)
 	{
-		int n = 1;
-		int i = 0;
-		int counter = 0;
-		int	number_of_string;
-
-		number_of_string = count_string(argv) - 1;
-		string = (char **)malloc((number_of_string + 1) * sizeof(char *));
-
-	//	for (int i = 0; argv[2][i]; i++)
-	//		printf("%c\n", argv[2][i]);
-		while (argv[n])
-		{
-			string[i] = argv[n];
-			counter = 0;
-			while (argv[n][counter])
-			{
-				syntax = check_char(string[i][counter]);
-				if (syntax == false)
-				{
-					printf("Error\n");
-					return (1);
-					break;
-				}
-				counter++;
-			}
-			i++;
-			n++;
-		}
-		string[i] = '\0';
-	//	ft_bzero(string[o + 1], ft_strlen(argv[0]));
-	}
-	printf("%d\n", syntax);
-	syntax = check_duplicates(string);
-	printf("chck dupo: %d\n", syntax);
-	if (syntax == true)
-	{
-		// I need a function that checks out for duplicates and for integer overflowing
 		int number_of_strings;
 
 		number_of_strings = count_string(string) - 1;
@@ -95,11 +47,81 @@ int main(int argc, char *argv[])
 			stack_a = temp;
 			number_of_strings--;
 		}
+		free(string);
 		printf("%d\n", stack_a->value);
 	}
-//	sort_numbers(stack_a, stack_b);
+	sort_numbers(stack_a, stack_b);
 	free (temp);
 	return (0);
+}
+
+char	**handle_errors(int argc, char *argv[])
+{
+	bool	syntax;
+	char	**string = NULL;
+	int		j;
+
+	j = 0;
+	syntax = true;
+	if (argc < 2 || !argv[1][0])
+		return (0);
+	else if (argc == 2) // this means the given numbers are a string, so we need to split it
+	{
+		if (argv[1][j] == '"')
+			j++;
+		while (argv[1][j])
+		{
+			syntax = check_char(argv[1][j]);
+			if (syntax == false)
+			{
+				return (0);
+				break;
+			};
+			j++;
+		}
+		string = ft_split(argv[1], ' ');
+	}
+	else if (argc > 2)
+	{
+		string = many_strings(argv);
+	}
+	return (string);
+}
+
+char	**many_strings(char *argv[])
+{
+	int 	n;
+	int 	i;
+	int 	counter;
+	int		number_of_string;
+	char 	**string = NULL;
+	bool	syntax;
+
+	n = 1;
+	i = 0;
+	counter = 0;
+	number_of_string = count_string(argv) - 1;
+	string = (char **)malloc((number_of_string + 1) * sizeof(char *));
+	if (!string)
+		return (0);
+	while (argv[n])
+	{
+		string[i] = argv[n];
+		counter = 0;
+		while (argv[n][counter])
+		{
+			if ((syntax = check_char(string[i][counter])) == false)
+			{
+				return (0);
+				break;
+			}
+			counter++;
+		}
+		i++;
+		n++;
+	}
+	string[i] = '\0';
+	return (string);
 }
 
 bool	check_char(char c)
@@ -119,11 +141,11 @@ bool    check_duplicates(char **s)
 	int *numbers = NULL;
 
 	numbers = (int *)malloc((i + 1) * sizeof(int));
-
-	for (int o = 0; s[o]; o++)
+	j = 0;
+	while (s[j])
 	{
-		numbers[o] = ft_atoi(s[o]);
-		printf("%d\n", numbers[o]);
+		numbers[j] = ft_atoi(s[j]);
+		j++;
 	}
 	i = 0;
 	ret = true;
@@ -144,8 +166,3 @@ bool    check_duplicates(char **s)
 	printf("%d\n", ret);
 	return (ret);
 }
-/*
-
-void	sort_numbers(Stack stack_a, Stack stack_b)
-{
-}*/
