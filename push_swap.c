@@ -15,42 +15,30 @@
 int main(int argc, char *argv[])
 {
     Stack   *stack_a;
-    Stack   *stack_b;
+//    Stack   *stack_b;
     Stack   *temp;
 	bool	syntax; // bool can be either true or false
 	char	**string = NULL; // doble puntero porque es un array de strings
-	int		j;
 
-	j = 0;
 	syntax = true;
-	temp = (Stack *)malloc(sizeof(Stack));
-	stack_a = (Stack *)malloc(sizeof(Stack));
-	stack_b = (Stack *)malloc(sizeof(Stack));
+	temp = NULL;
+	stack_a = NULL;
+//	stack_b = NULL;
 	string = handle_errors(argc, argv);
 	if (!string)
 	{
 		printf("Error\n");
-		free(stack_a);
-		free(temp);
 		return (1);
 	}
 	if ((syntax = check_duplicates(string)) == true)
 	{
-		int number_of_strings;
-
-		number_of_strings = count_string(string) - 1;
-		j = 0;
-		while (j <= number_of_strings)
-		{
-			temp->value = ft_atoi(string[number_of_strings]);
-			temp->next = stack_a;
-			stack_a = temp;
-			number_of_strings--;
-		}
-		free(string);
-		printf("%d\n", stack_a->value);
+		initialize_stack_a(&stack_a, string);
 	}
-	sort_numbers(stack_a, stack_b);
+	if (check_sorted(stack_a) == true)
+		printf("Success\n");
+	else
+		printf("Not sorted\n");
+	//sort_numbers(stack_a);
 	free (temp);
 	return (0);
 }
@@ -163,6 +151,5 @@ bool    check_duplicates(char **s)
 		}
 		i++;
 	}
-	printf("%d\n", ret);
 	return (ret);
 }
