@@ -34,10 +34,11 @@ int main(int argc, char *argv[])
 	{
 		initialize_stack_a(&stack_a, string);
 	}
-	if (check_sorted(stack_a) == true)
-		printf("Success\n");
-	else
-		printf("Not sorted\n");
+	if (check_sorted(stack_a) == false)
+	{
+		if (stack_len(stack_a) == 2) // if there are 2 numbers unsorted, swap them.
+			swap_a(&stack_a, true);
+	}
 	//sort_numbers(stack_a);
 	free (temp);
 	return (0);
