@@ -15,15 +15,13 @@
 int main(int argc, char *argv[])
 {
     Stack   *stack_a;
-//    Stack   *stack_b;
-    Stack   *temp;
+    Stack   *stack_b;
 	bool	syntax; // bool can be either true or false
 	char	**string = NULL; // doble puntero porque es un array de strings
 
 	syntax = true;
-	temp = NULL;
 	stack_a = NULL;
-//	stack_b = NULL;
+	stack_b = NULL;
 	string = handle_errors(argc, argv);
 	if (!string)
 	{
@@ -31,16 +29,17 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 	if ((syntax = check_duplicates(string)) == true)
-	{
 		initialize_stack_a(&stack_a, string);
-	}
 	if (check_sorted(stack_a) == false)
 	{
 		if (stack_len(stack_a) == 2) // if there are 2 numbers unsorted, swap them.
-			swap_a(&stack_a, true);
+			sa(&stack_a, true);
+		else if (stack_len(stack_a) == 3)
+			sort_three_nodes(&stack_a);
+		else
+			sort_numbers(&stack_a, &stack_b);
 	}
-	//sort_numbers(stack_a);
-	free (temp);
+	free (stack_a);
 	return (0);
 }
 
