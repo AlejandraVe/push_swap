@@ -21,7 +21,8 @@ SOURCES =	push_swap.c \
 		push_swap_utils.c \
 		push_swap_sorting.c \
 		push_swap_stack_utils.c \
-		push_swap_operations.c
+		push_swap_operators.c \
+		push_swap_appending.c
 
 MY_OBJECTS = $(SOURCES:.c=.o)
 
