@@ -45,9 +45,17 @@ char	**handle_errors(int argc, char *argv[]);
 //char	*ft_strdup(const char *s);
 //void	ft_bzero(void *s, size_t n);
 //size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-void	sort_numbers(Stack *stack_a, Stack *stack_b);
+void	sort_numbers(Stack **stack_a, Stack **stack_b);
 Stack	*find_last(Stack *stack);
 void    initialize_stack_a(Stack **stack_a, char *string[]);
 bool    check_sorted(Stack *stack);
+int     stack_len(Stack *stack);
+Stack   *find_max(Stack *stack);
+void    sa(Stack **stack_a, bool print);
+void    sort_three_nodes(Stack **stack_a);
+void	rr(Stack **stack_a, Stack **stack_b, bool print);
+void	rb(Stack **stack_b, bool print);
+void	ra(Stack **stack_a, bool print);
+void	rra(Stack **stack_a, bool print);
 
 #endif
