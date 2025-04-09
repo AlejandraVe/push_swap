@@ -44,6 +44,21 @@ void	sa(Stack **stack_a, bool print) // print the instruction
 		write(1, "sa\n", 3);
 }
 
+void	sb(Stack **stack_b, bool print) // print the instruction
+{
+	swap(stack_b);
+	if (print)
+		write(1, "sb\n", 3);
+}
+
+void	ss(Stack **stack_a, Stack **stack_b, bool print)
+{
+	swap(stack_a);
+	swap(stack_b);
+	if (print)
+		write(1, "ss\n", 3);
+}
+
 void	ra(Stack **stack_a, bool print)
 {
 	rotate(stack_a);
@@ -71,4 +86,19 @@ void	rra(Stack **stack_a, bool print)
 	reverse_rotate(stack_a);
 	if (print)
 		write(1, "rra\n", 4);
+}
+
+void	rrb(Stack **stack_b, bool print)
+{
+	reverse_rotate(stack_b);
+	if (print)
+		write(1, "rrb\n", 4);
+}
+
+void	rrr(Stack **stack_a, Stack **stack_b, bool print)
+{
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
+	if (print)
+		write(1, "rrr\n", 4);
 }
