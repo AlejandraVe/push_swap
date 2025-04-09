@@ -51,11 +51,17 @@ void    initialize_stack_a(Stack **stack_a, char *string[]);
 bool    check_sorted(Stack *stack);
 int     stack_len(Stack *stack);
 Stack   *find_max(Stack *stack);
-void    sa(Stack **stack_a, bool print);
 void    sort_three_nodes(Stack **stack_a);
 void	rr(Stack **stack_a, Stack **stack_b, bool print);
 void	rb(Stack **stack_b, bool print);
 void	ra(Stack **stack_a, bool print);
 void	rra(Stack **stack_a, bool print);
+void	rrb(Stack **stack_b, bool print);
+void	rrr(Stack **stack_a, Stack **stack_b, bool print);
+void    sa(Stack **stack_a, bool print);
+void	sb(Stack **stack_b, bool print);
+void	ss(Stack **stack_a, Stack **stack_b, bool print);
+void	pa(Stack **stack_a, Stack **stack_b, bool print);
+void	pb(Stack **stack_b, Stack **stack_a, bool print);
 
 #endif
