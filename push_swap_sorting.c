@@ -51,12 +51,26 @@ bool    check_sorted(Stack *stack)
 
 void	sort_numbers(Stack **stack_a, Stack **stack_b)
 {
-    Stack   *last_node = NULL;
+    Stack *top_a;
+    Stack *top_b;
 
-    if (!stack_a || !stack_b)
-        return ;
-    last_node = (Stack *)malloc(sizeof(Stack));
-    last_node = find_last(*stack_a);
-    printf("%d\n", last_node->value);
+    while (stack_len(*stack_a) != 3)
+    {
+        if (stack_len(*stack_a) == 4)
+            pa(stack_a, stack_b, true);
+        else
+        {
+            pa(stack_a, stack_b, true);
+            pa(stack_a, stack_b, true);
+        }
+    }
+    if (stack_len(*stack_a) == 3)
+    {
+        sort_three_nodes(&stack_a);
+    }
+
+
+    top_a = *stack_a;
+    top_b = *stack_b;
+    printf("top of stack_a %d\ntop of stack b %d\n", top_a->value, top_b->value);
 }
-
