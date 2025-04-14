@@ -55,6 +55,7 @@ int					stack_len(Stack *stack);
 Stack				*find_max(Stack *stack);
 Stack				*find_min(Stack *stack);
 void				sort_three_nodes(Stack **stack_a);
+void    			check_index(Stack *stack);
 void				rr(Stack **stack_a, Stack **stack_b, bool print);
 void				rb(Stack **stack_b, bool print);
 void				ra(Stack **stack_a, bool print);
