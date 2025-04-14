@@ -97,7 +97,7 @@ static void	check_target_node(Stack *stack_a, Stack *stack_b)
 			}
 			stack_b = stack_b->next;
 		}
-        stack_a->target_node = target;
+		stack_a->target_node = target;
 		stack_a = stack_a->next;
 	}
 	min_value = min_node->value;
