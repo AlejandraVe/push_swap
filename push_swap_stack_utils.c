@@ -12,3 +12,22 @@ int stack_len(Stack *stack)
     }
     return (total);
 }
+
+void    check_index(Stack *stack)
+{
+    int i;
+    int median;
+
+    i = 0;
+    median = stack_len(stack) / 2;
+    while (stack)
+    {
+        stack->index = i;
+        if (i <= median)
+            stack->above_median = true;
+        else
+            stack->above_median = false;
+        stack = stack->next;
+        i++;
+    }
+}
