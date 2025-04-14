@@ -71,39 +71,30 @@ bool	check_sorted(Stack *stack)
 
 static void	check_target_node(Stack *stack_a, Stack *stack_b)
 {
-	Stack	*min_node;
-	Stack	*max_node;
+	Stack	*top_b;
 	Stack	*target;
-	int		target_node_int;
-	int		min_value;
+	long	target_node_int;
 
-	min_node = find_min(stack_b);
-	max_node = find_max(stack_b);
-	target_node_int = min_node->value;
 	while (stack_a)
 	{
-        stack_b; // I need to start stact_b in the first position again ...
-		while (stack_b)
+        target_node_int = LONG_MIN;
+        top_b = stack_b;
+        while (top_b)
+	{
+		if (top_b->value < stack_a->value
+			&& top_b->value > target_node_int)
 		{
-			if (stack_a->value > stack_b->value
-				&& stack_a->value >= target_node_int)
-			{
-				target = stack_b;
-				target_node_int = stack_b->value;
-			}
-			else if (stack_a->value > max_node->value)
-			{
-				target = find_max(stack_b);
-				target_node_int = max_node->value;
-			}
-			stack_b = stack_b->next;
+			target_node_int = top_b->value;
+			target = top_b;
 		}
-		stack_a->target_node = target;
+        top_b = top_b->next;
+	}
+        if (target_node_int == LONG_MIN)
+            stack_a->target_node = find_max(stack_b);
+        else
+            stack_a->target_node = target;
         printf("target node of top of a %d is: %d\n", stack_a->value, stack_a->target_node->value);
 		stack_a = stack_a->next;
-	}
-	min_value = min_node->value;
-	printf("Min value after checking target nodes: %d\n", min_value);
 }
 
 void	sort_numbers(Stack **stack_a, Stack **stack_b)
