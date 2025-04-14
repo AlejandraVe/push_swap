@@ -82,6 +82,7 @@ static void	check_target_node(Stack *stack_a, Stack *stack_b)
 	target_node_int = min_node->value;
 	while (stack_a)
 	{
+        stack_b; // I need to start stact_b in the first position again ...
 		while (stack_b)
 		{
 			if (stack_a->value > stack_b->value
@@ -90,7 +91,7 @@ static void	check_target_node(Stack *stack_a, Stack *stack_b)
 				target = stack_b;
 				target_node_int = stack_b->value;
 			}
-			else
+			else if (stack_a->value > max_node->value)
 			{
 				target = find_max(stack_b);
 				target_node_int = max_node->value;
@@ -98,6 +99,7 @@ static void	check_target_node(Stack *stack_a, Stack *stack_b)
 			stack_b = stack_b->next;
 		}
 		stack_a->target_node = target;
+        printf("target node of top of a %d is: %d\n", stack_a->value, stack_a->target_node->value);
 		stack_a = stack_a->next;
 	}
 	min_value = min_node->value;
