@@ -111,6 +111,8 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 			pa(stack_a, stack_b, true);
 			pa(stack_a, stack_b, true);
 		}
+		check_index(stack_a);
+        	check_index(stack_b);
 		check_target_node(*stack_a, *stack_b);
 		top_a = *stack_a;
 		top_b = *stack_b;
