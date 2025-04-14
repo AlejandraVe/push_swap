@@ -114,6 +114,8 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		check_index(stack_a);
         	check_index(stack_b);
 		check_target_node(*stack_a, *stack_b);
+		check_cost(stack_a, stack_b);
+        	set_cheapest(stack_a);
 		top_a = *stack_a;
 		top_b = *stack_b;
 		printf("Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
