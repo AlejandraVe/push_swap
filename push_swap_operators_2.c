@@ -21,16 +21,16 @@ static void push(Stack **stack_pusher, Stack **stack_receiver)
     }
 }
 
-void	pa(Stack **stack_a, Stack **stack_b, bool print)
+void	pb(Stack **stack_a, Stack **stack_b, bool print)
 {
 	push(stack_a, stack_b);
 	if (print)
-		write(1, "pa\n", 3);
+		write(1, "pb\n", 3);
 }
 
-void	pb(Stack **stack_b, Stack **stack_a, bool print)
+void	pa(Stack **stack_b, Stack **stack_a, bool print)
 {
 	push(stack_b, stack_a);
 	if (print)
-		write(1, "pb\n", 3);
+		write(1, "pa\n", 3);
 }
