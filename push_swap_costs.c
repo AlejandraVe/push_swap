@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 void   check_cost(Stack *stack_a, Stack *stack_b)
 {
@@ -35,5 +36,33 @@ void    set_cheapest(Stack *stack)
         }
         stack = stack->next;
     }
-    cheapest_node->cheapest = true; // is it the stack or the cheapest_node?
+    cheapest_node->cheapest = true;
+}
+
+Stack    *store_cheapest(Stack *stack)
+{
+    while (stack)
+    {
+        if (stack->cheapest)
+            return (stack);
+        stack = stack->next;
+    }
+    return (NULL);
+}
+
+Stack    *check_properties(Stack *stack_a, Stack *stack_b)
+{
+    Stack   *cheapest;
+
+    check_index(stack_a);
+    check_index(stack_b);
+    check_target_node_a(stack_a, stack_b);
+    check_cost(stack_a, stack_b);
+    set_cheapest(stack_a);
+    cheapest = store_cheapest(stack_a);
+    check_index(stack_a);
+    check_index(stack_b);
+    printf("cheapest of a: %d and is above_median: %d\n", cheapest->value, cheapest->above_median);
+    printf("target_node of the cheapest is: %d, which is in b and is above median: %d\n", cheapest->target_node->value, cheapest->target_node->above_median);
+    return (cheapest);
 }
