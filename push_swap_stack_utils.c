@@ -23,7 +23,7 @@ void    check_index(Stack *stack)
     while (stack)
     {
         stack->index = i;
-        if (i <= median)
+        if (i < median)
             stack->above_median = true;
         else
             stack->above_median = false;
