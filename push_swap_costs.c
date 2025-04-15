@@ -35,5 +35,5 @@ void    set_cheapest(Stack *stack)
         }
         stack = stack->next;
     }
-    stack->cheapest = true; // is it the stack or the cheapest_node?
+    cheapest_node->cheapest = true; // is it the stack or the cheapest_node?
 }
