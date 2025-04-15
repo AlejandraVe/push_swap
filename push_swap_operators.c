@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 static void	swap(Stack **top) // swaps the position of the top and second node
 {
