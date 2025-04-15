@@ -69,7 +69,7 @@ bool	check_sorted(Stack *stack)
 	}
 }
 
-static void	check_target_node(Stack *stack_a, Stack *stack_b)
+static void	check_target_node_a(Stack *stack_a, Stack *stack_b)
 {
 	Stack	*top_b;
 	Stack	*target;
@@ -113,7 +113,7 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		}
 		check_index(stack_a);
         	check_index(stack_b);
-		check_target_node(*stack_a, *stack_b);
+		check_target_node_a(*stack_a, *stack_b);
 		check_cost(stack_a, stack_b);
         	set_cheapest(stack_a);
 		top_a = *stack_a;
