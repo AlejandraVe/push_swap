@@ -91,9 +91,12 @@ void	rra(Stack **stack_a, bool print)
 
 void	rrb(Stack **stack_b, bool print)
 {
+	Stack *top_b;
 	reverse_rotate(stack_b);
 	if (print)
 		write(1, "rrb\n", 4);
+	top_b = *stack_b;
+	printf("in function rrb the top of b is %d\n", top_b->value);
 }
 
 void	rrr(Stack **stack_a, Stack **stack_b, bool print)

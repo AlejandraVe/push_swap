@@ -1,7 +1,10 @@
 #include "push_swap.h"
+#include <stdio.h>
 
-static void	check_b_position(Stack *a, Stack *b, Stack *cheapest)
+static Stack	*check_b_position(Stack *a, Stack *b, Stack *cheapest)
 {
+	Stack *top_b;
+
 	if (cheapest->target_node->above_median)
 	{
 		while (b != cheapest->target_node || a != cheapest)
@@ -22,8 +25,9 @@ static void	check_b_position(Stack *a, Stack *b, Stack *cheapest)
 				rra(&a, true);
 		}
 	}
-	check_index(a);
-	check_index(b);
+	top_b = b;
+	printf("in function check_b_position, top of stack_b: %d\n", top_b->value);
+	return (top_b);
 }
 
 /*static void    check_b_position_reverse(Stack *a, Stack *b, Stack *cheapest)
@@ -38,8 +42,10 @@ static void	check_b_position(Stack *a, Stack *b, Stack *cheapest)
 	check_index(a);
 	check_index(b);
 }*/
-void	check_rotation_both(Stack *a, Stack *b, Stack *cheapest)
+Stack	*check_rotation_both(Stack *a, Stack *b, Stack *cheapest)
 {
+	Stack *top_b;
+
 	while (b != cheapest->target_node && a != cheapest)
 		rr(&a, &b, true);
 	/*while (1)
@@ -51,14 +57,16 @@ void	check_rotation_both(Stack *a, Stack *b, Stack *cheapest)
 		else if (b == cheapest->target_node && a == cheapest)
 			break ;
 	}*/
-	check_b_position(a, b, cheapest);
+	top_b = check_b_position(a, b, cheapest);
+	return (top_b);
 }
 
-void	check_rev_rotation_both(Stack *a, Stack *b, Stack *cheapest)
+Stack	*check_rev_rotation_both(Stack *a, Stack *b, Stack *cheapest)
 {
+	Stack *top_b;
 	while (b != cheapest->target_node && a != cheapest)
 		rrr(&a, &b, true);
-	/* while (1)
+	/* while (1)s
 		{
 			if (b == cheapest->target_node && a != cheapest)
 				rra(&a, true);
@@ -67,5 +75,6 @@ void	check_rev_rotation_both(Stack *a, Stack *b, Stack *cheapest)
 			else if (b == cheapest->target_node && a == cheapest)
 				break ;
 		}*/
-	check_b_position(a, b, cheapest);
+	top_b = check_b_position(a, b, cheapest);
+	return (top_b);
 }

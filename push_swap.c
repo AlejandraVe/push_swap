@@ -6,19 +6,20 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:04:20 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/03/26 10:32:43 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:47:37 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+
 #include <stdio.h>
+#include "push_swap.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    Stack   *stack_a;
-    Stack   *stack_b;
-	bool	syntax; // bool can be either true or false
-	char	**string = NULL; // doble puntero porque es un array de strings
+	Stack	*stack_a;
+	Stack	*stack_b;
 
+	bool syntax;          // bool can be either true or false
+	char **string = NULL; // doble puntero porque es un array de strings
 	syntax = true;
 	stack_a = NULL;
 	stack_b = NULL;
@@ -30,6 +31,11 @@ int main(int argc, char *argv[])
 	}
 	if ((syntax = check_duplicates(string)) == true)
 		initialize_stack_a(&stack_a, string);
+	else
+	{
+		write (1, "No duplicates please\n", 21);
+		return (1);
+	}
 	if (check_sorted(stack_a) == false)
 	{
 		if (stack_len(stack_a) == 2) // if there are 2 numbers unsorted, swap them.
@@ -39,21 +45,22 @@ int main(int argc, char *argv[])
 		else
 			sort_numbers(&stack_a, &stack_b);
 	}
-	free (stack_a);
+	free(stack_a);
 	return (0);
 }
 
 char	**handle_errors(int argc, char *argv[])
 {
 	bool	syntax;
-	char	**string = NULL;
+	char	**string;
 	int		j;
 
+	string = NULL;
 	j = 0;
 	syntax = true;
 	if (argc < 2 || !argv[1][0])
 		return (0);
-	else if (argc == 2) // this means the given numbers are a string, so we need to split it
+	else if (argc == 2) // this means the given numbers are a string,so we need to split it
 	{
 		if (argv[1][j] == '"')
 			j++;
@@ -63,7 +70,7 @@ char	**handle_errors(int argc, char *argv[])
 			if (syntax == false)
 			{
 				return (0);
-				break;
+				break ;
 			};
 			j++;
 		}
@@ -78,13 +85,14 @@ char	**handle_errors(int argc, char *argv[])
 
 char	**many_strings(char *argv[])
 {
-	int 	n;
-	int 	i;
-	int 	counter;
+	int		n;
+	int		i;
+	int		counter;
 	int		number_of_string;
-	char 	**string = NULL;
+	char	**string;
 	bool	syntax;
 
+	string = NULL;
 	n = 1;
 	i = 0;
 	counter = 0;
@@ -101,7 +109,7 @@ char	**many_strings(char *argv[])
 			if ((syntax = check_char(string[i][counter])) == false)
 			{
 				return (0);
-				break;
+				break ;
 			}
 			counter++;
 		}
@@ -120,14 +128,15 @@ bool	check_char(char c)
 		return (0);
 }
 
-bool    check_duplicates(char **s)
+bool	check_duplicates(char **s)
 {
-	int i;
+	int	i;
 	int	j;
-	int ret;
-	i = count_string(s);
-	int *numbers = NULL;
+	int	ret;
+	int	*numbers;
 
+	i = count_string(s);
+	numbers = NULL;
 	numbers = (int *)malloc((i + 1) * sizeof(int));
 	j = 0;
 	while (s[j])
@@ -147,7 +156,7 @@ bool    check_duplicates(char **s)
 		if (numbers[i] == numbers[i + j])
 		{
 			ret = false;
-			break;
+			break ;
 		}
 		i++;
 	}
