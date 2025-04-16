@@ -68,10 +68,12 @@ Stack	*check_properties(Stack *stack_a, Stack *stack_b)
 		cheapest->above_median);
 	printf("target_node of the cheapest is: %d, which is in b and is above median: %d\n", cheapest->target_node->value,
 		cheapest->target_node->above_median);
-	if (cheapest->above_median)
+	if (cheapest->above_median && cheapest->target_node->above_median)
 		stack_b = check_rotation_both(stack_a, stack_b, cheapest);
-	else if (!(cheapest->above_median))
+	else if (!(cheapest->above_median) && !(cheapest->target_node->above_median))
 		stack_b = check_rev_rotation_both(stack_a, stack_b, cheapest);
+    else if (cheapest->above_median && !(cheapest->target_node->above_median))
+        stack_b = check_rotation_a_above(stack_a, stack_b, cheapest);
     check_index(stack_a);
     check_index(stack_b);
     top_a = stack_a;
