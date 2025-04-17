@@ -10,19 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
+#include <stdio.h>
 
-int	main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	Stack	*stack_a;
-	Stack	*stack_b;
+    Stack   *stack_a = NULL;
+    Stack   *stack_b = NULL;
+	bool	syntax = true; // bool can be either true or false
+	char	**string = NULL; // doble puntero porque es un array de strings
 
-	bool syntax;          // bool can be either true or false
-	char **string = NULL; // doble puntero porque es un array de strings
-	syntax = true;
-	stack_a = NULL;
-	stack_b = NULL;
 	string = handle_errors(argc, argv);
 	if (!string)
 	{
@@ -52,15 +49,14 @@ int	main(int argc, char *argv[])
 char	**handle_errors(int argc, char *argv[])
 {
 	bool	syntax;
-	char	**string;
+	char	**string = NULL;
 	int		j;
 
-	string = NULL;
 	j = 0;
 	syntax = true;
 	if (argc < 2 || !argv[1][0])
 		return (0);
-	else if (argc == 2) // this means the given numbers are a string,so we need to split it
+	else if (argc == 2) // this means the given numbers are a string, so we need to split it
 	{
 		if (argv[1][j] == '"')
 			j++;
@@ -70,29 +66,26 @@ char	**handle_errors(int argc, char *argv[])
 			if (syntax == false)
 			{
 				return (0);
-				break ;
+				break;
 			};
 			j++;
 		}
 		string = ft_split(argv[1], ' ');
 	}
 	else if (argc > 2)
-	{
 		string = many_strings(argv);
-	}
 	return (string);
 }
 
 char	**many_strings(char *argv[])
 {
-	int		n;
-	int		i;
-	int		counter;
+	int 	n;
+	int 	i;
+	int 	counter;
 	int		number_of_string;
-	char	**string;
+	char 	**string = NULL;
 	bool	syntax;
 
-	string = NULL;
 	n = 1;
 	i = 0;
 	counter = 0;
@@ -109,7 +102,7 @@ char	**many_strings(char *argv[])
 			if ((syntax = check_char(string[i][counter])) == false)
 			{
 				return (0);
-				break ;
+				break;
 			}
 			counter++;
 		}
@@ -128,15 +121,14 @@ bool	check_char(char c)
 		return (0);
 }
 
-bool	check_duplicates(char **s)
+bool    check_duplicates(char **s)
 {
-	int	i;
+	int i;
 	int	j;
-	int	ret;
-	int	*numbers;
-
+	int ret;
 	i = count_string(s);
-	numbers = NULL;
+	int *numbers = NULL;
+
 	numbers = (int *)malloc((i + 1) * sizeof(int));
 	j = 0;
 	while (s[j])
@@ -150,15 +142,14 @@ bool	check_duplicates(char **s)
 	{
 		j = 1;
 		while (numbers[i] != numbers[i + j] && numbers[i + j])
-		{
 			j++;
-		}
 		if (numbers[i] == numbers[i + j])
 		{
 			ret = false;
-			break ;
+			break;
 		}
 		i++;
 	}
 	return (ret);
 }
+
