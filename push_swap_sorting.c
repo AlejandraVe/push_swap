@@ -48,7 +48,6 @@ Stack	*find_min(Stack *stack)
 		}
 		stack = stack->next;
 	}
-	printf("The min value is %d\n", min_value);
 	return (min_node);
 }
 
@@ -68,41 +67,17 @@ bool	check_sorted(Stack *stack)
 	}
 }
 
-void	check_target_node_a(Stack *stack_a, Stack *stack_b)
-{
-	Stack	*top_b;
-	Stack	*target;
-	long	target_node_int;
-
-	while (stack_a)
-	{
-		target_node_int = LONG_MIN;
-		top_b = stack_b;
-		while (top_b)
-		{
-			if (top_b->value < stack_a->value && top_b->value > target_node_int)
-			{
-				target_node_int = top_b->value;
-				target = top_b;
-			}
-			top_b = top_b->next;
-		}
-		if (target_node_int == LONG_MIN)
-			stack_a->target_node = find_max(stack_b);
-		else
-			stack_a->target_node = target;
-		printf("target node of top of a %d is: %d\n", stack_a->value,
-			stack_a->target_node->value);
-		stack_a = stack_a->next;
-	}
-}
-
 void	sort_numbers(Stack **stack_a, Stack **stack_b)
 {
 	Stack	*top_a;
 	Stack	*top_b;
 
-	while (stack_len(*stack_a) != 3)
+	if (stack_len(*stack_a) == 3)
+	{
+		sort_three_nodes(stack_a);
+		return ;
+	}
+	while (stack_len(*stack_a) > 3)
 	{
 		if (stack_len(*stack_a) == 4 && !check_sorted(*stack_a))
 			pb(stack_a, stack_b, true);
@@ -116,11 +91,49 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		*stack_b = check_properties(*stack_a, *stack_b);
 		top_a = *stack_a;
 		top_b = *stack_b;
-		printf("In sort numbers: Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
-			top_b->value);
+		printf("After pushing a to b: Top of stack_a: %d and next is: %d\n And top of stack_b: %d and next is %d\n", top_a->value, top_a->next->value,
+			top_b->value, top_b->next->value);
 	}
-	if (stack_len(*stack_a) == 3)
+	sort_three_nodes(stack_a);
+	while (*stack_b)
 	{
-		sort_three_nodes(stack_a);
+		*stack_a = begin_sort_b(*stack_a, *stack_b);
+		*stack_b = set_values_in_b(*stack_a, *stack_b);
+		printf("stack_len of b: %d\nstack_len of a: %d\n", stack_len(*stack_b), stack_len(*stack_a));
+		top_a = *stack_a;
+		top_b = *stack_b;
+		/*for (int i = 0; i < stack_len(*stack_a); i++)
+		{
+			printf("stack_a %d: %d\n", i, top_a->value);
+			top_a = top_a->next;
+		}
+		for (int i = 0; i < stack_len(*stack_b); i++)
+		{
+			printf("stack_b %d: %d\n", i, top_b->value);
+			top_b = top_b->next;
+		}*/
+		printf("In the loop to sort b: Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
+		top_b->value);
 	}
+
+	printf("At the end of the function: Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
+		top_b->value);
+}
+
+Stack	*set_values_in_b(Stack *a, Stack *b)
+{
+	Stack *top_a = a;
+	Stack *top_b = b;
+
+	for (int i = 0; i < stack_len(a); i++)
+	{
+		printf("stack_a %d: %d\n", i, top_a->value);
+		top_a = top_a->next;
+	}
+	for (int i = 0; i < stack_len(b); i++)
+	{
+		printf("stack_b %d: %d\n", i, top_b->value);
+		top_b = top_b->next;
+	}
+	return (b);
 }
