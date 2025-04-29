@@ -1,17 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 11:04:20 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/04/15 16:47:37 by alvera-v         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
-#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
@@ -23,7 +10,7 @@ int main(int argc, char *argv[])
 	string = handle_errors(argc, argv);
 	if (!string)
 	{
-		printf("Error\n");
+		write(1, "Error\n", 6);
 		return (1);
 	}
 	if ((syntax = check_duplicates(string)) == true)
