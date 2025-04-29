@@ -20,6 +20,8 @@ void	check_index(Stack *stack)
 
 	i = 0;
 	median = stack_len(stack) / 2;
+	if (!stack)
+		return ;
 	while (stack)
 	{
 		stack->index = i;
