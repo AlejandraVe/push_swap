@@ -67,6 +67,46 @@ bool	check_sorted(Stack *stack)
 	}
 }
 
+static void	move_a_to_b(Stack **stack_a, Stack **stack_b)
+{
+	Stack	*cheapest;
+	Stack	*top_a;
+	Stack	*top_b;
+
+	cheapest = store_cheapest(*stack_a);
+	if (cheapest->above_median && cheapest->target_node->above_median)
+		check_rotation_both(stack_a, stack_b, cheapest);
+	else if (!(cheapest->above_median) && !(cheapest->target_node->above_median))
+		check_rev_rotation_both(stack_a, stack_b, cheapest);
+    else if (cheapest->above_median && !(cheapest->target_node->above_median))
+        check_rotation_a_above(stack_a, stack_b, cheapest);
+	else if (!(cheapest->above_median) && cheapest->target_node->above_median)
+		check_rotation_b_above(stack_a, stack_b, cheapest);
+    top_a = *stack_a;
+    top_b = *stack_b;
+	printf("Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
+		top_b->value);
+}
+
+static void	move_b_to_a(Stack **a, Stack **b)
+{
+	Stack	*cheapest;
+
+	cheapest = store_cheapest(*b);
+	printf("Cheapest from b has been stored\n");
+	printf("Above median: %d %d\n", cheapest->above_median, cheapest->target_node->above_median);
+	if (cheapest->above_median && cheapest->target_node->above_median)
+		b_to_a_both_above(a, b, cheapest);
+	else if (!cheapest->above_median && !cheapest->target_node->above_median)
+		b_to_a_both_below(a, b, cheapest);
+    else if (cheapest->above_median && !(cheapest->target_node->above_median))
+        b_above_to_a(a, b, cheapest);
+	else if (!(cheapest->above_median) && cheapest->target_node->above_median)
+		b_below_to_a(a, b, cheapest);
+	if (stack_len(*b) > 0)
+		pa(b, a, true);
+}
+
 void	sort_numbers(Stack **stack_a, Stack **stack_b)
 {
 	Stack	*top_a;
@@ -88,52 +128,29 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		}
 		if (stack_len(*stack_a) == 3)
 			break;
-		*stack_b = check_properties(*stack_a, *stack_b);
+		check_properties(*stack_a, *stack_b);
+		move_a_to_b(stack_a, stack_b);
 		top_a = *stack_a;
 		top_b = *stack_b;
 		printf("After pushing a to b: Top of stack_a: %d and next is: %d\n And top of stack_b: %d and next is %d\n", top_a->value, top_a->next->value,
 			top_b->value, top_b->next->value);
 	}
 	sort_three_nodes(stack_a);
-	while (*stack_b)
+	while (stack_len(*stack_b) > 0)
 	{
-		*stack_a = begin_sort_b(*stack_a, *stack_b);
-		*stack_b = set_values_in_b(*stack_a, *stack_b);
+		begin_sort_b(*stack_a, *stack_b);
+		move_b_to_a(stack_a, stack_b);
 		printf("stack_len of b: %d\nstack_len of a: %d\n", stack_len(*stack_b), stack_len(*stack_a));
-		top_a = *stack_a;
-		top_b = *stack_b;
-		/*for (int i = 0; i < stack_len(*stack_a); i++)
-		{
-			printf("stack_a %d: %d\n", i, top_a->value);
-			top_a = top_a->next;
-		}
-		for (int i = 0; i < stack_len(*stack_b); i++)
-		{
-			printf("stack_b %d: %d\n", i, top_b->value);
-			top_b = top_b->next;
-		}*/
-		printf("In the loop to sort b: Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
-		top_b->value);
+		check_index(*stack_a);
+		if (!(*stack_b))
+			break;
+		else
+			check_index(*stack_b);
 	}
-
-	printf("At the end of the function: Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
-		top_b->value);
-}
-
-Stack	*set_values_in_b(Stack *a, Stack *b)
-{
-	Stack *top_a = a;
-	Stack *top_b = b;
-
-	for (int i = 0; i < stack_len(a); i++)
+	top_a = *stack_a;
+	for (int i = 0; i < stack_len(*stack_a); i++)
 	{
-		printf("stack_a %d: %d\n", i, top_a->value);
+		printf("stack_a posi %d: %d\n", i, top_a->value);
 		top_a = top_a->next;
 	}
-	for (int i = 0; i < stack_len(b); i++)
-	{
-		printf("stack_b %d: %d\n", i, top_b->value);
-		top_b = top_b->next;
-	}
-	return (b);
 }
