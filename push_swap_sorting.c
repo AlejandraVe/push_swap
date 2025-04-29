@@ -153,6 +153,13 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		printf("stack_a posi %d: %d\n", i, top_a->value);
 		top_a = top_a->next;
 	}
+	min_at_top(stack_a);
+	top_a = *stack_a;
+	for (int i = 0; i < stack_len(*stack_a); i++)
+	{
+		printf("stack_a posi %d: %d\n", i, top_a->value);
+		top_a = top_a->next;
+	}
 }
 
 void	min_at_top(Stack **stack_a)
