@@ -1,12 +1,16 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 static void	push(Stack **stack_pusher, Stack **stack_receiver)
 {
 	Stack	*push_node;
 
+	if (!stack_pusher)
+		return ;
 	push_node = *stack_pusher;
 	*stack_pusher = (*stack_pusher)->next;
-	(*stack_pusher)->prev = NULL;
+	if (*stack_pusher)
+		(*stack_pusher)->prev = NULL;
 	push_node->prev = NULL;
 	if (!(*stack_receiver))
 	{
