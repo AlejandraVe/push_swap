@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 void	check_cost(Stack *pusher, Stack *receiver)
 {
@@ -27,6 +26,8 @@ void	set_cheapest(Stack *stack)
 	Stack	*cheapest_node;
 
 	cheapest = LONG_MAX;
+	if (!stack)
+		return ;
 	while (stack)
 	{
 		if (stack->push_cost < cheapest)
@@ -41,6 +42,8 @@ void	set_cheapest(Stack *stack)
 
 Stack	*store_cheapest(Stack *stack)
 {
+	if (!stack)
+		return (NULL);
 	while (stack)
 	{
 		if (stack->cheapest)
