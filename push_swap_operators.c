@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	swap(Stack **top) // swaps the position of the top and second node
 {
@@ -18,6 +17,8 @@ static void rotate(Stack **stack)
 {
 	Stack	*last_node;
 
+	if (!stack)
+		return ;
 	last_node = find_last(*stack);
 	last_node->next = *stack;
 	*stack = (*stack)->next;
@@ -30,6 +31,8 @@ static void	reverse_rotate(Stack **stack)
 {
 	Stack	*last;
 
+	if (!stack)
+		return ;
 	last = find_last(*stack);
 	last->prev->next = NULL;
 	last->next = *stack;
