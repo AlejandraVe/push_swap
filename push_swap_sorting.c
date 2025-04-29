@@ -154,3 +154,17 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		top_a = top_a->next;
 	}
 }
+
+void	min_at_top(Stack **stack_a)
+{
+	Stack	*min;
+
+	min = find_min(*stack_a);
+	while (min != *stack_a)
+	{
+		if (!min->above_median)
+			rra(stack_a, true);
+		else
+			ra(stack_a, true);
+	}
+}
