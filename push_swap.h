@@ -82,5 +82,6 @@ void				sb(Stack **stack_b, bool print);
 void				ss(Stack **stack_a, Stack **stack_b, bool print);
 void				pa(Stack **stack_a, Stack **stack_b, bool print);
 void				pb(Stack **stack_b, Stack **stack_a, bool print);
+void				min_at_top(Stack **stack_a);
 
 #endif
