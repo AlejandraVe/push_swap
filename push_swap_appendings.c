@@ -6,7 +6,7 @@ static void    append_node(Stack **stack, int n) //Define a function that search
     Stack   *last_node; // to store a pointer to the current last node of the stack
 
     node = malloc(sizeof(Stack));
-    if (!node)
+    if (!node || !stack)
         return ;
     node->next = NULL; // set the next pointer to NULL as it'll be the last node of the lost
     node->value = n; // set the value to the number the function receives
@@ -29,6 +29,8 @@ void    initialize_stack_a(Stack **stack_a, char *string[])
 	int n;
     int i;
     i = 0;
+    if (!stack_a)
+        return ;
     while (string[i])
     {
         n = ft_atoi(string[i]);
