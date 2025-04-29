@@ -1,10 +1,12 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 int	stack_len(Stack *stack)
 {
 	int total; // see how many nodes there are
+
 	total = 0;
+	if (!stack)
+		return (0);
 	while (stack) // loop until the end of the stack is reached
 	{
 		stack = stack->next; // move to the next node
@@ -20,8 +22,6 @@ void	check_index(Stack *stack)
 
 	i = 0;
 	median = stack_len(stack) / 2;
-	if (!stack)
-		return ;
 	while (stack)
 	{
 		stack->index = i;
@@ -57,8 +57,33 @@ void	check_target_node_a(Stack *stack_a, Stack *stack_b)
 			stack_a->target_node = find_max(stack_b);
 		else
 			stack_a->target_node = target;
-		printf("target node of top of a %d is: %d\n", stack_a->value,
-			stack_a->target_node->value);
 		stack_a = stack_a->next;
+	}
+}
+
+void    check_target_node_b(Stack *a, Stack *b)
+{
+    Stack	*top_a;
+	Stack	*target;
+	long	target_node_int;
+
+	while (b)
+	{
+		target_node_int = LONG_MAX;
+		top_a = a;
+		while (top_a)
+		{
+			if (top_a->value > b->value && top_a->value < target_node_int)
+			{
+				target_node_int = top_a->value;
+				target = top_a;
+			}
+			top_a = top_a->next;
+		}
+		if (target_node_int == LONG_MAX)
+			b->target_node = find_min(a);
+		else
+			b->target_node = target;
+		b = b->next;
 	}
 }
