@@ -71,6 +71,7 @@ void				b_to_a_both_below(Stack **a, Stack **b, Stack *cheapest);
 void				b_below_to_a(Stack **a, Stack **b, Stack *cheapest);
 void				b_above_to_a(Stack **a, Stack **b, Stack *cheapest);
 void				begin_sort_b(Stack *a, Stack *b);
+void   				check_target_node_b(Stack *a, Stack *b);
 void				rr(Stack **stack_a, Stack **stack_b, bool print);
 void				rb(Stack **stack_b, bool print);
 void				ra(Stack **stack_a, bool print);
