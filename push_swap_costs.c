@@ -50,33 +50,11 @@ Stack	*store_cheapest(Stack *stack)
 	return (NULL);
 }
 
-Stack	*check_properties(Stack *stack_a, Stack *stack_b)
+void	check_properties(Stack *stack_a, Stack *stack_b)
 {
-	Stack	*cheapest;
-	Stack	*top_a;
-	Stack	*top_b;
-
 	check_index(stack_a);
 	check_index(stack_b);
 	check_target_node_a(stack_a, stack_b);
 	check_cost(stack_a, stack_b);
 	set_cheapest(stack_a);
-	cheapest = store_cheapest(stack_a);
-	check_index(stack_a);
-	check_index(stack_b);
-	if (cheapest->above_median && cheapest->target_node->above_median)
-		stack_b = check_rotation_both(stack_a, stack_b, cheapest);
-	else if (!(cheapest->above_median) && !(cheapest->target_node->above_median))
-		stack_b = check_rev_rotation_both(stack_a, stack_b, cheapest);
-    else if (cheapest->above_median && !(cheapest->target_node->above_median))
-        stack_b = check_rotation_a_above(stack_a, stack_b, cheapest);
-	else if (!(cheapest->above_median) && cheapest->target_node->above_median)
-		stack_b = check_rotation_b_above(stack_a, stack_b, cheapest);
-    check_index(stack_a);
-    check_index(stack_b);
-    top_a = stack_a;
-    top_b = stack_b;
-	printf("Top of stack_a: %d and top of stack_b: %d\n", top_a->value,
-		top_b->value);
-    return (stack_b);
 }
