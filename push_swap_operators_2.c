@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 static void	push(Stack **stack_pusher, Stack **stack_receiver)
 {
