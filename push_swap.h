@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:05:05 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/04/30 11:21:28 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:01:02 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ typedef struct stack
 	int				push_cost;
 	bool			above_median;
 	bool			cheapest;
-	struct stack *next; // el último del stack,
-						// su next debe apuntar a nulo o void.
-	struct stack *prev; // tengo que comprobar con prev,
-						// que el prev del valor al que estoy apuntando sea NULL
+	struct stack *next;
+	struct stack *prev;
 	struct stack	*target_node;
 }					Stack;
 int					main(int argc, char *argv[]);
@@ -42,11 +40,6 @@ int					count_string(char **s);
 bool				check_duplicates(char **s);
 char				**many_strings(char *argv[]);
 char				**handle_errors(int argc, char *argv[]);
-// char	*ft_strtrim(char const *s1, char const *set);
-// void	*ft_calloc(size_t nmeb, size_t size);
-// char	*ft_strdup(const char *s);
-// void	ft_bzero(void *s, size_t n);
-// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void				sort_numbers(Stack **stack_a, Stack **stack_b);
 Stack				*find_last(Stack *stack);
 void				initialize_stack_a(Stack **stack_a, char *string[]);

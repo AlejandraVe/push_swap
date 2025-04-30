@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:18:37 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/03/25 12:44:21 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:23:01 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ int	ft_atoi(const char *nptr)
 		return (0);
 	return (ret * neg);
 }
-
-/*Allocates (with malloc(3)) and returns an array
-of strings obtained by splitting ’s’ using the
-character ’c’ as a delimiter. The array must end
-with a NULL pointer.*/
 
 static int	count_chars(char const *s, char c)
 {
@@ -100,7 +95,6 @@ static void	free_string(char **string, int i)
 		free(string[j]);
 		j++;
 	}
-	free(string);
 }
 
 char	**ft_split(char const *s, char c)

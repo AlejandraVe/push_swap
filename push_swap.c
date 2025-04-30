@@ -9,9 +9,12 @@ int	main(int argc, char *argv[])
 	stack_b = NULL;
 	bool syntax = true;   // bool can be either true or false
 	char **string = NULL; // doble puntero porque es un array de strings
+	if (!argv[1])
+		return (1);
 	string = handle_errors(argc, argv);
 	if (!string)
 	{
+		free (string);
 		write(1, "Error\n", 6);
 		return (1);
 	}
@@ -19,9 +22,11 @@ int	main(int argc, char *argv[])
 		initialize_stack_a(&stack_a, string);
 	else
 	{
-		write(1, "No duplicates please\n", 21);
+		free(string);
+		write(1, "Error\n", 6);
 		return (1);
 	}
+	free(string);
 	if (check_sorted(stack_a) == false)
 	{
 		if (stack_len(stack_a) == 2)
@@ -50,6 +55,8 @@ char	**handle_errors(int argc, char *argv[])
 	{
 		if (argv[1][j] == '"')
 			j++;
+		if (argv[1][j] == ' ' || !ft_isdigit(argv[1][j]) || argv[1][j] != '-')
+			return (0);
 		while (argv[1][j])
 		{
 			syntax = check_char(argv[1][j]);
@@ -64,6 +71,8 @@ char	**handle_errors(int argc, char *argv[])
 	}
 	else if (argc > 2)
 		string = many_strings(argv);
+	if (!string)
+		return (0);
 	return (string);
 }
 
@@ -95,6 +104,34 @@ char	**many_strings(char *argv[])
 				return (0);
 				break ;
 			}
+			else
+			{
+				if ((string[i][counter] == ' '
+					&& (!ft_isdigit(string[i][counter - 1])))
+					|| (string[i][counter] == ' '
+						&& (!(ft_isdigit(string[i][counter + 1]))
+							|| string[i][counter + 1] != '-')))
+				{
+					return (0);
+					break ;
+				}
+				else if ((string[i][counter] == ' '
+						|| string[i][counter] == '-')
+					&& !ft_isdigit(string[i][counter + 1]))
+				{
+					return (0);
+					break ;
+				}
+				else
+				{
+					if ((string[i][counter] == '-') && string[i][counter
+						- 1] != ' ')
+					{
+						return (0);
+						break ;
+					}
+				}
+			}
 			counter++;
 		}
 		i++;
@@ -106,8 +143,10 @@ char	**many_strings(char *argv[])
 
 bool	check_char(char c)
 {
-	if (ft_isdigit(c) || c == ' ' || c == '-' || c == '+')
+	if (ft_isdigit(c) || c == ' ' || c == '-')
+	{
 		return (1);
+	}
 	else
 		return (0);
 }
@@ -126,6 +165,11 @@ bool	check_duplicates(char **s)
 	while (s[j])
 	{
 		numbers[j] = ft_atoi(s[j]);
+		if (!numbers[j])
+		{
+			return (0);
+			break ;
+		}
 		j++;
 	}
 	i = 0;

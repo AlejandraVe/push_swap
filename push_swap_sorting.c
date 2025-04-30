@@ -110,7 +110,7 @@ static void	move_b_to_a(Stack **a, Stack **b)
 
 void	sort_numbers(Stack **stack_a, Stack **stack_b)
 {
-	Stack	*top_a;
+	//Stack	*top_a;
 
 	if (!stack_a)
 		return ;
@@ -146,12 +146,12 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 	}
 	check_index(*stack_a);
 	min_at_top(stack_a);
-	top_a = *stack_a;
+	/*top_a = *stack_a;
 	for (int i = 0; i < stack_len(*stack_a); i++)
 	{
 		printf("End: stack a posci %d: %d\n", i, top_a->value);
 		top_a = top_a->next;
-	}
+	}*/
 }
 
 void	min_at_top(Stack **stack_a)

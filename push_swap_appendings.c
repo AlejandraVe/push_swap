@@ -1,26 +1,20 @@
 #include "push_swap.h"
 
 static void	append_node(Stack **stack, int n)
-		// Define a function that searches for the last node to append to the linked list
 {
-	Stack *node;
-		// store a pointer to the new node to be created with the value n
-	Stack *last_node;
-		// to store a pointer to the current last node of the stack
+	Stack	*node;
+	Stack	*last_node;
 
 	node = malloc(sizeof(Stack));
 	if (!node || !stack)
 		return ;
 	node->next = NULL;
-		// set the next pointer to NULL as it'll be the last node of the lost
-	node->value = n;    // set the value to the number the function receives
-	node->cheapest = 0; // initialise the cheapest to 0
+	node->value = n;
+	node->cheapest = 0;
 	if (!(*stack))
-		// check if the stack is empty or currently pointing to NULL; this would indicate a 1st node needs to be found
 	{
 		*stack = node;
 		node->prev = NULL;
-			// set the head node's previous pointer to NULL as it's the first node
 	}
 	else
 	{
@@ -44,11 +38,10 @@ void	initialize_stack_a(Stack **stack_a, char *string[])
 		append_node(stack_a, n);
 		i++;
 	}
-	free(string);
 }
 
 Stack	*find_last(Stack *stack)
-		// Define a function that returns the pointer to the last node
+// Define a function that returns the pointer to the last node
 {
 	if (!stack)
 		return (NULL);
