@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:05:05 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/04/15 16:36:48 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:21:28 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ typedef struct stack
 	bool			above_median;
 	bool			cheapest;
 	struct stack *next; // el último del stack,
-		//su next debe apuntar a nulo o void.
+						// su next debe apuntar a nulo o void.
 	struct stack *prev; // tengo que comprobar con prev,
-		//que el prev del valor al que estoy apuntando sea NULL
+						// que el prev del valor al que estoy apuntando sea NULL
 	struct stack	*target_node;
 }					Stack;
 int					main(int argc, char *argv[]);
@@ -64,14 +64,16 @@ void				check_rev_rotation_both(Stack **a, Stack **b,
 						Stack *cheapest);
 void				check_target_node_a(Stack *stack_a, Stack *stack_b);
 void				check_properties(Stack *stack_a, Stack *stack_b);
-void				check_rotation_a_above(Stack **a, Stack **b, Stack *cheapest);
-void				check_rotation_b_above(Stack **a, Stack **b, Stack *cheapest);
+void				check_rotation_a_above(Stack **a, Stack **b,
+						Stack *cheapest);
+void				check_rotation_b_above(Stack **a, Stack **b,
+						Stack *cheapest);
 void				b_to_a_both_above(Stack **a, Stack **b, Stack *cheapest);
 void				b_to_a_both_below(Stack **a, Stack **b, Stack *cheapest);
 void				b_below_to_a(Stack **a, Stack **b, Stack *cheapest);
 void				b_above_to_a(Stack **a, Stack **b, Stack *cheapest);
 void				begin_sort_b(Stack *a, Stack *b);
-void   				check_target_node_b(Stack *a, Stack *b);
+void				check_target_node_b(Stack *a, Stack *b);
 void				rr(Stack **stack_a, Stack **stack_b, bool print);
 void				rb(Stack **stack_b, bool print);
 void				ra(Stack **stack_a, bool print);

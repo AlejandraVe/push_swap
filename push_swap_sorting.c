@@ -82,10 +82,11 @@ static void	move_a_to_b(Stack **stack_a, Stack **stack_b)
 	cheapest = store_cheapest(*stack_a);
 	if (cheapest->above_median && cheapest->target_node->above_median)
 		check_rotation_both(stack_a, stack_b, cheapest);
-	else if (!(cheapest->above_median) && !(cheapest->target_node->above_median))
+	else if (!(cheapest->above_median)
+		&& !(cheapest->target_node->above_median))
 		check_rev_rotation_both(stack_a, stack_b, cheapest);
-    else if (cheapest->above_median && !(cheapest->target_node->above_median))
-        check_rotation_a_above(stack_a, stack_b, cheapest);
+	else if (cheapest->above_median && !(cheapest->target_node->above_median))
+		check_rotation_a_above(stack_a, stack_b, cheapest);
 	else if (!(cheapest->above_median) && cheapest->target_node->above_median)
 		check_rotation_b_above(stack_a, stack_b, cheapest);
 }
@@ -99,8 +100,8 @@ static void	move_b_to_a(Stack **a, Stack **b)
 		b_to_a_both_above(a, b, cheapest);
 	else if (!cheapest->above_median && !cheapest->target_node->above_median)
 		b_to_a_both_below(a, b, cheapest);
-    else if (cheapest->above_median && !(cheapest->target_node->above_median))
-        b_above_to_a(a, b, cheapest);
+	else if (cheapest->above_median && !(cheapest->target_node->above_median))
+		b_above_to_a(a, b, cheapest);
 	else if (!(cheapest->above_median) && cheapest->target_node->above_median)
 		b_below_to_a(a, b, cheapest);
 	if (stack_len(*b) > 0)
@@ -128,7 +129,7 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 			pb(stack_a, stack_b, true);
 		}
 		if (stack_len(*stack_a) == 3)
-			break;
+			break ;
 		check_properties(*stack_a, *stack_b);
 		move_a_to_b(stack_a, stack_b);
 	}
@@ -139,7 +140,7 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		move_b_to_a(stack_a, stack_b);
 		check_index(*stack_a);
 		if (!(*stack_b))
-			break;
+			break ;
 		else
 			check_index(*stack_b);
 	}

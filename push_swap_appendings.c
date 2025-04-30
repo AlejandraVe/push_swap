@@ -1,50 +1,58 @@
 #include "push_swap.h"
 
-static void    append_node(Stack **stack, int n) //Define a function that searches for the last node to append to the linked list
+static void	append_node(Stack **stack, int n)
+		// Define a function that searches for the last node to append to the linked list
 {
-    Stack   *node; // store a pointer to the new node to be created with the value n
-    Stack   *last_node; // to store a pointer to the current last node of the stack
+	Stack *node;
+		// store a pointer to the new node to be created with the value n
+	Stack *last_node;
+		// to store a pointer to the current last node of the stack
 
-    node = malloc(sizeof(Stack));
-    if (!node || !stack)
-        return ;
-    node->next = NULL; // set the next pointer to NULL as it'll be the last node of the lost
-    node->value = n; // set the value to the number the function receives
-    node->cheapest = 0; // initialise the cheapest to 0
-    if (!(*stack)) // check if the stack is empty or currently pointing to NULL; this would indicate a 1st node needs to be found
-    {
-        *stack = node; //if it's empty, we set the tack to point to the node, making it the new head of the stack
-        node->prev = NULL; //set the head node's previous pointer to NULL as it's the first node
-    }
-    else
-    {
-        last_node = find_last(*stack);
-        last_node->next = node;
-        node->prev = last_node;
-    }
+	node = malloc(sizeof(Stack));
+	if (!node || !stack)
+		return ;
+	node->next = NULL;
+		// set the next pointer to NULL as it'll be the last node of the lost
+	node->value = n;    // set the value to the number the function receives
+	node->cheapest = 0; // initialise the cheapest to 0
+	if (!(*stack))
+		// check if the stack is empty or currently pointing to NULL; this would indicate a 1st node needs to be found
+	{
+		*stack = node;
+		node->prev = NULL;
+			// set the head node's previous pointer to NULL as it's the first node
+	}
+	else
+	{
+		last_node = find_last(*stack);
+		last_node->next = node;
+		node->prev = last_node;
+	}
 }
 
-void    initialize_stack_a(Stack **stack_a, char *string[])
+void	initialize_stack_a(Stack **stack_a, char *string[])
 {
-	int n;
-    int i;
-    i = 0;
-    if (!stack_a)
-        return ;
-    while (string[i])
-    {
-        n = ft_atoi(string[i]);
-        append_node(stack_a, n);
-        i++;
-    }
-    free(string);
+	int	n;
+	int	i;
+
+	i = 0;
+	if (!stack_a)
+		return ;
+	while (string[i])
+	{
+		n = ft_atoi(string[i]);
+		append_node(stack_a, n);
+		i++;
+	}
+	free(string);
 }
 
-Stack	*find_last(Stack *stack) //Define a function that returns the pointer to the last node
+Stack	*find_last(Stack *stack)
+		// Define a function that returns the pointer to the last node
 {
 	if (!stack)
 		return (NULL);
-	while (stack->next) //Loop until the end of the stack is reached
+	while (stack->next) // Loop until the end of the stack is reached
 		stack = stack->next;
 	return (stack);
 }

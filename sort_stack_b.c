@@ -12,14 +12,14 @@ void	b_to_a_both_above(Stack **a, Stack **b, Stack *cheapest)
 	while (*a != cheapest->target_node || *b != cheapest)
 	{
 		if (*a != cheapest->target_node && *b == cheapest)
-        {
-        	ra(a, true);
-        }
+		{
+			ra(a, true);
+		}
 		if (*a == cheapest->target_node && *b != cheapest)
 		{
 			rb(b, true);
 		}
-    }
+	}
 }
 
 void	b_above_to_a(Stack **a, Stack **b, Stack *cheapest)
@@ -43,8 +43,8 @@ void	begin_sort_b(Stack *a, Stack *b)
 	check_index(a);
 	check_index(b);
 	check_target_node_b(a, b);
-    check_cost(b, a);
-    set_cheapest(b);
+	check_cost(b, a);
+	set_cheapest(b);
 }
 
 void	b_to_a_both_below(Stack **a, Stack **b, Stack *cheapest)
@@ -54,10 +54,10 @@ void	b_to_a_both_below(Stack **a, Stack **b, Stack *cheapest)
 	while (*a != cheapest->target_node || *b != cheapest)
 	{
 		if (*a != cheapest->target_node && *b == cheapest)
-            rra(a, true);
+			rra(a, true);
 		if (*a == cheapest->target_node && *b != cheapest)
 			rrb(b, true);
-    }
+	}
 }
 
 void	b_below_to_a(Stack **a, Stack **b, Stack *cheapest)
@@ -75,5 +75,5 @@ void	b_below_to_a(Stack **a, Stack **b, Stack *cheapest)
 		{
 			ra(a, true);
 		}
-    }
+	}
 }
