@@ -3,7 +3,6 @@
 int	stack_len(Stack *stack)
 {
 	int total; // see how many nodes there are
-
 	total = 0;
 	if (!stack)
 		return (0);
@@ -61,9 +60,9 @@ void	check_target_node_a(Stack *stack_a, Stack *stack_b)
 	}
 }
 
-void    check_target_node_b(Stack *a, Stack *b)
+void	check_target_node_b(Stack *a, Stack *b)
 {
-    Stack	*top_a;
+	Stack	*top_a;
 	Stack	*target;
 	long	target_node_int;
 

@@ -6,7 +6,7 @@ static void	append_node(Stack **stack, int n)
 	Stack	*last_node;
 
 	node = malloc(sizeof(Stack));
-	if (!node || !stack)
+	if (!node)
 		return ;
 	node->next = NULL;
 	node->value = n;
@@ -41,11 +41,10 @@ void	initialize_stack_a(Stack **stack_a, char *string[])
 }
 
 Stack	*find_last(Stack *stack)
-// Define a function that returns the pointer to the last node
 {
 	if (!stack)
 		return (NULL);
-	while (stack->next) // Loop until the end of the stack is reached
+	while (stack->next)
 		stack = stack->next;
 	return (stack);
 }

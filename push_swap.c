@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
@@ -91,7 +92,7 @@ char	**many_strings(char *argv[])
 	counter = 0;
 	number_of_string = count_string(argv) - 1;
 	string = (char **)malloc((number_of_string + 1) * sizeof(char *));
-	if (!string)
+	if (!string || argv[1][0] == ' ')
 		return (0);
 	while (argv[n])
 	{
@@ -107,30 +108,23 @@ char	**many_strings(char *argv[])
 			else
 			{
 				if ((string[i][counter] == ' '
-					&& (!ft_isdigit(string[i][counter - 1])))
-					|| (string[i][counter] == ' '
-						&& (!(ft_isdigit(string[i][counter + 1]))
-							|| string[i][counter + 1] != '-')))
+					&& (!ft_isdigit(string[i][counter + 1])))
+					|| (string[i][counter] == ' ' && string[i][counter + 1] != '-'))
 				{
 					return (0);
 					break ;
 				}
-				else if ((string[i][counter] == ' '
-						|| string[i][counter] == '-')
+				if ((string[i][counter] == '-')
 					&& !ft_isdigit(string[i][counter + 1]))
 				{
 					return (0);
 					break ;
 				}
-				else
+				/*if (string[i][counter - 1] != ' ' && (string[i][counter] == '-'))
 				{
-					if ((string[i][counter] == '-') && string[i][counter
-						- 1] != ' ')
-					{
-						return (0);
-						break ;
-					}
-				}
+					return (0);
+					break ;
+				}*/
 			}
 			counter++;
 		}
@@ -144,9 +138,7 @@ char	**many_strings(char *argv[])
 bool	check_char(char c)
 {
 	if (ft_isdigit(c) || c == ' ' || c == '-')
-	{
 		return (1);
-	}
 	else
 		return (0);
 }
