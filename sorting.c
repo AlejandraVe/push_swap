@@ -1,9 +1,20 @@
-#include "push_swap.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_sorting.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/07 13:09:50 by alvera-v          #+#    #+#             */
+/*   Updated: 2025/05/07 13:20:12 by alvera-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	sort_three_nodes(Stack **stack_a)
+#include "push_swap.h"
+
+void	sort_three_nodes(t_Stack **stack_a)
 {
-	Stack	*max_node;
+	t_Stack	*max_node;
 
 	if (!stack_a)
 		return ;
@@ -16,66 +27,9 @@ void	sort_three_nodes(Stack **stack_a)
 		sa(stack_a, true);
 }
 
-Stack	*find_max(Stack *stack)
+static void	move_a_to_b(t_Stack **stack_a, t_Stack **stack_b)
 {
-	Stack	*max_node;
-	long	max_value;
-
-	if (!stack)
-		return (NULL);
-	max_value = INT_MIN;
-	while (stack)
-	{
-		if (stack->value > max_value)
-		{
-			max_value = stack->value;
-			max_node = stack;
-		}
-		stack = stack->next;
-	}
-	return (max_node);
-}
-
-Stack	*find_min(Stack *stack)
-{
-	Stack	*min_node;
-	int		min_value;
-
-	if (!stack)
-		return (NULL);
-	min_node = (find_max(stack));
-	min_value = min_node->value;
-	while (stack)
-	{
-		if (stack->value < min_value)
-		{
-			min_value = stack->value;
-			min_node = stack;
-		}
-		stack = stack->next;
-	}
-	return (min_node);
-}
-
-bool	check_sorted(Stack *stack)
-{
-	if (!stack)
-		return (false);
-	else
-	{
-		while (stack->next)
-		{
-			if (stack->value > stack->next->value)
-				return (false);
-			stack = stack->next;
-		}
-		return (true);
-	}
-}
-
-static void	move_a_to_b(Stack **stack_a, Stack **stack_b)
-{
-	Stack	*cheapest;
+	t_Stack	*cheapest;
 
 	if (!stack_a)
 		return ;
@@ -91,9 +45,9 @@ static void	move_a_to_b(Stack **stack_a, Stack **stack_b)
 		check_rotation_b_above(stack_a, stack_b, cheapest);
 }
 
-static void	move_b_to_a(Stack **a, Stack **b)
+static void	move_b_to_a(t_Stack **a, t_Stack **b)
 {
-	Stack	*cheapest;
+	t_Stack	*cheapest;
 
 	cheapest = store_cheapest(*b);
 	if (cheapest->above_median && cheapest->target_node->above_median)
@@ -108,17 +62,8 @@ static void	move_b_to_a(Stack **a, Stack **b)
 		pa(b, a, true);
 }
 
-void	sort_numbers(Stack **stack_a, Stack **stack_b)
+static void	push_to_b(t_Stack **stack_a, t_Stack **stack_b)
 {
-	//Stack	*top_a;
-
-	if (!stack_a)
-		return ;
-	if (stack_len(*stack_a) == 3)
-	{
-		sort_three_nodes(stack_a);
-		return ;
-	}
 	while (stack_len(*stack_a) > 3)
 	{
 		if (stack_len(*stack_a) == 4 && !check_sorted(*stack_a))
@@ -133,8 +78,21 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 		check_properties(*stack_a, *stack_b);
 		move_a_to_b(stack_a, stack_b);
 	}
+}
+
+void	sort_numbers(t_Stack **stack_a, t_Stack **stack_b)
+{
+	if (!stack_a)
+		return ;
+	if (stack_len(*stack_a) == 3)
+	{
+		sort_three_nodes(stack_a);
+		return ;
+	}
+	if (stack_len(*stack_a) > 3)
+		push_to_b(stack_a, stack_b);
 	sort_three_nodes(stack_a);
-	while (stack_len(*stack_b) > 0)
+	while (*stack_b)
 	{
 		begin_sort_b(*stack_a, *stack_b);
 		move_b_to_a(stack_a, stack_b);
@@ -146,23 +104,4 @@ void	sort_numbers(Stack **stack_a, Stack **stack_b)
 	}
 	check_index(*stack_a);
 	min_at_top(stack_a);
-	/*top_a = *stack_a;
-	for (int i = 0; i < stack_len(*stack_a); i++)
-	{
-		printf("End: stack a posci %d: %d\n", i, top_a->value);
-		top_a = top_a->next;
-	}*/
-}
-
-void	min_at_top(Stack **stack_a)
-{
-	if (!stack_a)
-		return ;
-	while (find_min(*stack_a)->value != (*stack_a)->value)
-	{
-		if (find_min(*stack_a)->above_median)
-			ra(stack_a, true);
-		else
-			rra(stack_a, true);
-	}
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_stack_b.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/07 13:16:59 by alvera-v          #+#    #+#             */
+/*   Updated: 2025/05/07 13:17:00 by alvera-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	b_to_a_both_above(Stack **a, Stack **b, Stack *cheapest)
+void	b_to_a_both_above(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 {
 	while (*a != cheapest->target_node && *b != cheapest)
 	{
@@ -22,7 +34,7 @@ void	b_to_a_both_above(Stack **a, Stack **b, Stack *cheapest)
 	}
 }
 
-void	b_above_to_a(Stack **a, Stack **b, Stack *cheapest)
+void	b_above_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 {
 	while (*a != cheapest->target_node && *b != cheapest)
 	{
@@ -38,7 +50,7 @@ void	b_above_to_a(Stack **a, Stack **b, Stack *cheapest)
 	}
 }
 
-void	begin_sort_b(Stack *a, Stack *b)
+void	begin_sort_b(t_Stack *a, t_Stack *b)
 {
 	check_index(a);
 	check_index(b);
@@ -47,7 +59,7 @@ void	begin_sort_b(Stack *a, Stack *b)
 	set_cheapest(b);
 }
 
-void	b_to_a_both_below(Stack **a, Stack **b, Stack *cheapest)
+void	b_to_a_both_below(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 {
 	while (*a != cheapest->target_node && *b != cheapest)
 		rrr(a, b, true);
@@ -60,7 +72,7 @@ void	b_to_a_both_below(Stack **a, Stack **b, Stack *cheapest)
 	}
 }
 
-void	b_below_to_a(Stack **a, Stack **b, Stack *cheapest)
+void	b_below_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 {
 	while (*a != cheapest->target_node && *b != cheapest)
 	{

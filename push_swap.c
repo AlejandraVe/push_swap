@@ -1,33 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/07 12:40:04 by alvera-v          #+#    #+#             */
+/*   Updated: 2025/05/07 13:23:44 by alvera-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
-	Stack	*stack_a;
-	Stack	*stack_b;
+	t_Stack	*stack_a;
+	t_Stack	*stack_b;
+	char	**string;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	bool syntax = true;   // bool can be either true or false
-	char **string = NULL; // doble puntero porque es un array de strings
+	string = NULL;
 	if (!argv[1])
 		return (1);
 	string = handle_errors(argc, argv);
 	if (!string)
 	{
-		free (string);
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	if ((syntax = check_duplicates(string)) == true)
+	if ((check_duplicates(string)) == true)
 		initialize_stack_a(&stack_a, string);
 	else
 	{
-		free(string);
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	free(string);
+	start_sorting(stack_a, stack_b);
+	free(stack_a);
+	return (0);
+}
+
+void	start_sorting(t_Stack *stack_a, t_Stack *stack_b)
+{
 	if (check_sorted(stack_a) == false)
 	{
 		if (stack_len(stack_a) == 2)
@@ -37,146 +52,67 @@ int	main(int argc, char *argv[])
 		else
 			sort_numbers(&stack_a, &stack_b);
 	}
-	free(stack_a);
-	return (0);
-}
-
-char	**handle_errors(int argc, char *argv[])
-{
-	bool	syntax;
-	char	**string;
-	int		j;
-
-	string = NULL;
-	j = 0;
-	syntax = true;
-	if (argc < 2 || !argv[1][0])
-		return (0);
-	else if (argc == 2)
-	{
-		if (argv[1][j] == '"')
-			j++;
-		if (argv[1][j] == ' ' || !ft_isdigit(argv[1][j]) || argv[1][j] != '-')
-			return (0);
-		while (argv[1][j])
-		{
-			syntax = check_char(argv[1][j]);
-			if (syntax == false)
-			{
-				return (0);
-				break ;
-			};
-			j++;
-		}
-		string = ft_split(argv[1], ' ');
-	}
-	else if (argc > 2)
-		string = many_strings(argv);
-	if (!string)
-		return (0);
-	return (string);
-}
-
-char	**many_strings(char *argv[])
-{
-	int		n;
-	int		i;
-	int		counter;
-	int		number_of_string;
-	char	**string;
-	bool	syntax;
-
-	string = NULL;
-	n = 1;
-	i = 0;
-	counter = 0;
-	number_of_string = count_string(argv) - 1;
-	string = (char **)malloc((number_of_string + 1) * sizeof(char *));
-	if (!string || argv[1][0] == ' ')
-		return (0);
-	while (argv[n])
-	{
-		string[i] = argv[n];
-		counter = 0;
-		while (argv[n][counter])
-		{
-			if ((syntax = check_char(string[i][counter])) == false)
-			{
-				return (0);
-				break ;
-			}
-			else
-			{
-				if ((string[i][counter] == ' '
-					&& (!ft_isdigit(string[i][counter + 1])))
-					|| (string[i][counter] == ' ' && string[i][counter + 1] != '-'))
-				{
-					return (0);
-					break ;
-				}
-				if ((string[i][counter] == '-')
-					&& !ft_isdigit(string[i][counter + 1]))
-				{
-					return (0);
-					break ;
-				}
-				/*if (string[i][counter - 1] != ' ' && (string[i][counter] == '-'))
-				{
-					return (0);
-					break ;
-				}*/
-			}
-			counter++;
-		}
-		i++;
-		n++;
-	}
-	string[i] = '\0';
-	return (string);
-}
-
-bool	check_char(char c)
-{
-	if (ft_isdigit(c) || c == ' ' || c == '-')
-		return (1);
-	else
-		return (0);
 }
 
 bool	check_duplicates(char **s)
 {
 	int	i;
 	int	j;
-	int	ret;
 	int	*numbers;
 
-	i = count_string(s);
 	numbers = NULL;
-	numbers = (int *)malloc((i + 1) * sizeof(int));
+	numbers = (int *)malloc((count_string(s) + 1) * sizeof(int));
 	j = 0;
 	while (s[j])
 	{
 		numbers[j] = ft_atoi(s[j]);
 		if (!numbers[j])
-		{
-			return (0);
-			break ;
-		}
+			return (false);
 		j++;
 	}
 	i = 0;
-	ret = true;
 	while (numbers[i])
 	{
 		j = 1;
 		while (numbers[i] != numbers[i + j] && numbers[i + j])
 			j++;
 		if (numbers[i] == numbers[i + j])
-		{
-			ret = false;
-			break ;
-		}
+			return (false);
 		i++;
 	}
-	return (ret);
+	return (true);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c <= '9' && c >= '0')
+	{
+		return (1);
+	}
+	return (0);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	long	ret;
+	long	neg;
+
+	ret = 0;
+	neg = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			neg = -1;
+		nptr++;
+	}
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		ret = ret * 10 + ((long)*nptr - 48);
+		nptr++;
+	}
+	if ((ret * neg) > INT_MAX || (ret * neg) < INT_MIN)
+		return (0);
+	return (ret * neg);
 }

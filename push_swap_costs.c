@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_costs.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/07 13:12:06 by alvera-v          #+#    #+#             */
+/*   Updated: 2025/05/07 13:23:02 by alvera-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	check_cost(Stack *pusher, Stack *receiver)
+void	check_cost(t_Stack *pusher, t_Stack *receiver)
 {
 	int	len_pusher;
 	int	len_receiver;
@@ -20,10 +32,10 @@ void	check_cost(Stack *pusher, Stack *receiver)
 	}
 }
 
-void	set_cheapest(Stack *stack)
+void	set_cheapest(t_Stack *stack)
 {
 	long	cheapest;
-	Stack	*cheapest_node;
+	t_Stack	*cheapest_node;
 
 	cheapest = LONG_MAX;
 	if (!stack)
@@ -40,7 +52,7 @@ void	set_cheapest(Stack *stack)
 	cheapest_node->cheapest = true;
 }
 
-Stack	*store_cheapest(Stack *stack)
+t_Stack	*store_cheapest(t_Stack *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -53,7 +65,7 @@ Stack	*store_cheapest(Stack *stack)
 	return (NULL);
 }
 
-void	check_properties(Stack *stack_a, Stack *stack_b)
+void	check_properties(t_Stack *stack_a, t_Stack *stack_b)
 {
 	check_index(stack_a);
 	check_index(stack_b);

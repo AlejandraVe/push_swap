@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_appendings.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/07 12:54:10 by alvera-v          #+#    #+#             */
+/*   Updated: 2025/05/07 13:23:30 by alvera-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void	append_node(Stack **stack, int n)
+static void	append_node(t_Stack **stack, int n)
 {
-	Stack	*node;
-	Stack	*last_node;
+	t_Stack	*node;
+	t_Stack	*last_node;
 
-	node = malloc(sizeof(Stack));
+	node = malloc(sizeof(t_Stack));
 	if (!node)
 		return ;
 	node->next = NULL;
@@ -24,7 +36,7 @@ static void	append_node(Stack **stack, int n)
 	}
 }
 
-void	initialize_stack_a(Stack **stack_a, char *string[])
+void	initialize_stack_a(t_Stack **stack_a, char *string[])
 {
 	int	n;
 	int	i;
@@ -38,13 +50,33 @@ void	initialize_stack_a(Stack **stack_a, char *string[])
 		append_node(stack_a, n);
 		i++;
 	}
+	free (string);
 }
 
-Stack	*find_last(Stack *stack)
+t_Stack	*find_last(t_Stack *stack)
 {
 	if (!stack)
 		return (NULL);
 	while (stack->next)
 		stack = stack->next;
 	return (stack);
+}
+
+void	check_index(t_Stack *stack)
+{
+	int	i;
+	int	median;
+
+	i = 0;
+	median = stack_len(stack) / 2;
+	while (stack)
+	{
+		stack->index = i;
+		if (i < median)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		i++;
+	}
 }
