@@ -24,13 +24,9 @@ void	b_to_a_both_above(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	while (*a != cheapest->target_node || *b != cheapest)
 	{
 		if (*a != cheapest->target_node && *b == cheapest)
-		{
 			ra(a, true);
-		}
 		if (*a == cheapest->target_node && *b != cheapest)
-		{
 			rb(b, true);
-		}
 	}
 }
 
@@ -55,8 +51,6 @@ void	begin_sort_b(t_Stack *a, t_Stack *b)
 	check_index(a);
 	check_index(b);
 	check_target_node_b(a, b);
-	check_cost(b, a);
-	set_cheapest(b);
 }
 
 void	b_to_a_both_below(t_Stack **a, t_Stack **b, t_Stack *cheapest)
