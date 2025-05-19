@@ -39,14 +39,43 @@ static void	move_a_to_b(t_Stack **stack_a, t_Stack **stack_b)
 	else if (!(cheapest->above_median)
 		&& !(cheapest->target_node->above_median))
 		check_rev_rotation_both(stack_a, stack_b, cheapest);
-	else if (cheapest->above_median && !(cheapest->target_node->above_median))
+	/*else if (cheapest->above_median && !(cheapest->target_node->above_median))
 		check_rotation_a_above(stack_a, stack_b, cheapest);
 	else if (!(cheapest->above_median) && cheapest->target_node->above_median)
-		check_rotation_b_above(stack_a, stack_b, cheapest);
+		check_rotation_b_above(stack_a, stack_b, cheapest);*/
+	before_push(stack_a, cheapest, 'a');
+	before_push(stack_b, cheapest->target_node, 'b');
+	pb(stack_b, stack_a, true);
+}
+
+void	before_push(t_Stack **stack, t_Stack *top_node, char name)
+{
+	while (*stack != top_node)
+	{
+		if (name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack, true);
+			else
+				rra(stack, true);
+
+		}
+		else if (name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack, true);
+			else
+				rrb(stack, true);
+		}
+	}
 }
 
 static void	move_b_to_a(t_Stack **a, t_Stack **b)
 {
+	before_push(a, (*b)->target_node, 'a');
+	pa(a, b, true);
+
+	/*
 	t_Stack	*cheapest;
 
 	cheapest = store_cheapest(*b);
@@ -59,49 +88,38 @@ static void	move_b_to_a(t_Stack **a, t_Stack **b)
 	else if (!(cheapest->above_median) && cheapest->target_node->above_median)
 		b_below_to_a(a, b, cheapest);
 	if (stack_len(*b) > 0)
-		pa(b, a, true);
-}
-
-static void	push_to_b(t_Stack **stack_a, t_Stack **stack_b)
-{
-	while (stack_len(*stack_a) > 3)
-	{
-		if (stack_len(*stack_a) == 4 && !check_sorted(*stack_a))
-			pb(stack_a, stack_b, true);
-		else
-		{
-			pb(stack_a, stack_b, true);
-			pb(stack_a, stack_b, true);
-		}
-		if (stack_len(*stack_a) == 3)
-			break ;
-		check_properties(*stack_a, *stack_b);
-		move_a_to_b(stack_a, stack_b);
-	}
+		pa(b, a, true);*/
 }
 
 void	sort_numbers(t_Stack **stack_a, t_Stack **stack_b)
 {
-	if (!stack_a)
+	t_Stack	*top_a;
+	int	len_a;
+	len_a = stack_len(*stack_a);
+
+	if (!stack_a || len_a == 3)
 		return ;
-	if (stack_len(*stack_a) == 3)
+	if (len_a-- > 3 && !check_sorted(*stack_a))
+		pb(stack_b, stack_a, true);
+	if (len_a-- > 3 && !check_sorted(*stack_a))
+		pb(stack_b, stack_a, true);
+	while (len_a-- > 3 && !check_sorted(*stack_a))
 	{
-		sort_three_nodes(stack_a);
-		return ;
+		check_properties(*stack_a, *stack_b);
+		move_a_to_b(stack_a, stack_b);
 	}
-	if (stack_len(*stack_a) > 3)
-		push_to_b(stack_a, stack_b);
 	sort_three_nodes(stack_a);
 	while (*stack_b)
 	{
 		begin_sort_b(*stack_a, *stack_b);
 		move_b_to_a(stack_a, stack_b);
-		check_index(*stack_a);
-		if (!(*stack_b))
-			break ;
-		else
-			check_index(*stack_b);
 	}
 	check_index(*stack_a);
 	min_at_top(stack_a);
+	top_a = *stack_a;
+	for (int i = 0; i < stack_len(*stack_a); i++)
+    {
+        printf("stack_a posi %d: %d\n", i, top_a->value);
+		top_a = top_a->next;
+    }
 }
