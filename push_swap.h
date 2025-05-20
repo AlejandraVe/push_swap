@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:05:05 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:16:07 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:50:53 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,19 @@ void				b_below_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest);
 void				b_above_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest);
 void				begin_sort_b(t_Stack *a, t_Stack *b);
 void				check_target_node_b(t_Stack *a, t_Stack *b);
-void				rr(t_Stack **stack_a, t_Stack **stack_b, bool print);
-void				rb(t_Stack **stack_b, bool print);
-void				ra(t_Stack **stack_a, bool print);
-void				rra(t_Stack **stack_a, bool print);
-void				rrb(t_Stack **stack_b, bool print);
-void				rrr(t_Stack **stack_a, t_Stack **stack_b, bool print);
-void				sa(t_Stack **stack_a, bool print);
-void				sb(t_Stack **stack_b, bool print);
-void				ss(t_Stack **stack_a, t_Stack **stack_b, bool print);
-void				pa(t_Stack **stack_a, t_Stack **stack_b, bool print);
-void				pb(t_Stack **stack_b, t_Stack **stack_a, bool print);
+void				rr(t_Stack **stack_a, t_Stack **stack_b);
+void				rb(t_Stack **stack_b);
+void				ra(t_Stack **stack_a);
+void				rra(t_Stack **stack_a);
+void				rrb(t_Stack **stack_b);
+void				rrr(t_Stack **stack_a, t_Stack **stack_b);
+void				sa(t_Stack **stack_a);
+void				sb(t_Stack **stack_b);
+void				ss(t_Stack **stack_a, t_Stack **stack_b);
+void				pa(t_Stack **stack_a, t_Stack **stack_b);
+void				pb(t_Stack **stack_b, t_Stack **stack_a);
 void				min_at_top(t_Stack **stack_a);
+void				before_push(t_Stack **stack, t_Stack *top_node,
+						char letter);
 
 #endif

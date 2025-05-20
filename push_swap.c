@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:40:04 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:23:44 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:31:32 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	start_sorting(t_Stack *stack_a, t_Stack *stack_b)
 	if (check_sorted(stack_a) == false)
 	{
 		if (stack_len(stack_a) == 2)
-			sa(&stack_a, true);
+			sa(&stack_a);
 		else if (stack_len(stack_a) == 3)
 			sort_three_nodes(&stack_a);
 		else

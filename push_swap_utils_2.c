@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:59:58 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:18:14 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:46:57 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,33 +61,4 @@ int	count_string(char **s)
 		i++;
 	}
 	return (i);
-}
-
-void	min_at_top(t_Stack **stack_a)
-{
-	if (!stack_a)
-		return ;
-	while (find_min(*stack_a)->value != (*stack_a)->value)
-	{
-		if (find_min(*stack_a)->above_median)
-			ra(stack_a, true);
-		else
-			rra(stack_a, true);
-	}
-}
-
-bool	check_sorted(t_Stack *stack)
-{
-	if (!stack)
-		return (false);
-	else
-	{
-		while (stack->next)
-		{
-			if (stack->value > stack->next->value)
-				return (false);
-			stack = stack->next;
-		}
-		return (true);
-	}
 }

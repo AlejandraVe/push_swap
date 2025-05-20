@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:12:06 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:23:02 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:47:02 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,31 @@ t_Stack	*store_cheapest(t_Stack *stack)
 	return (NULL);
 }
 
-void	check_properties(t_Stack *stack_a, t_Stack *stack_b)
+void	min_at_top(t_Stack **stack_a)
 {
-	check_index(stack_a);
-	check_index(stack_b);
-	check_target_node_a(stack_a, stack_b);
-	check_cost(stack_a, stack_b);
-	set_cheapest(stack_a);
+	if (!stack_a)
+		return ;
+	while (find_min(*stack_a)->value != (*stack_a)->value)
+	{
+		if (find_min(*stack_a)->above_median)
+			ra(stack_a);
+		else
+			rra(stack_a);
+	}
+}
+
+bool	check_sorted(t_Stack *stack)
+{
+	if (!stack)
+		return (false);
+	else
+	{
+		while (stack->next)
+		{
+			if (stack->value > stack->next->value)
+				return (false);
+			stack = stack->next;
+		}
+		return (true);
+	}
 }

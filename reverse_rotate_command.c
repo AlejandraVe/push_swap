@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operators.c                              :+:      :+:    :+:   */
+/*   reverse_rotate_command.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:11:51 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:29:18 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:28:54 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,21 @@ static void	reverse_rotate(t_Stack **stack)
 	last->next->prev = last;
 }
 
-void	rra(t_Stack **stack_a, bool print)
+void	rra(t_Stack **stack_a)
 {
 	reverse_rotate(stack_a);
-	if (print)
-		write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 }
 
-void	rrb(t_Stack **stack_b, bool print)
+void	rrb(t_Stack **stack_b)
 {
 	reverse_rotate(stack_b);
-	if (print)
-		write(1, "rrb\n", 4);
+	write(1, "rrb\n", 4);
 }
 
-void	rrr(t_Stack **stack_a, t_Stack **stack_b, bool print)
+void	rrr(t_Stack **stack_a, t_Stack **stack_b)
 {
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
-	if (print)
-		write(1, "rrr\n", 4);
+	write(1, "rrr\n", 4);
 }

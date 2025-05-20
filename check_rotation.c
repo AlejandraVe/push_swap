@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operators_4.c                            :+:      :+:    :+:   */
+/*   check_rotation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:11:12 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:20:41 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:31:57 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@ void	check_rotation_a_above(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	{
 		if (*b != cheapest->target_node && *a != cheapest)
 		{
-			ra(a, true);
-			rrb(b, true);
+			ra(a);
+			rrb(b);
 		}
 		if (*a == cheapest && *b != cheapest->target_node)
-			rrb(b, true);
+			rrb(b);
 		if (*b == cheapest->target_node && *a != cheapest)
-		{
-			ra(a, true);
-		}
+			ra(a);
 	}
 }
 
@@ -40,14 +38,12 @@ void	check_rotation_b_above(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	{
 		if (*b != cheapest->target_node && *a != cheapest)
 		{
-			rra(a, true);
-			rb(b, true);
+			rra(a);
+			rb(b);
 		}
 		if (*b == cheapest->target_node && *a != cheapest)
-			rra(a, true);
+			rra(a);
 		if (*a == cheapest && *b != cheapest->target_node)
-		{
-			rb(b, true);
-		}
+			rb(b);
 	}
 }

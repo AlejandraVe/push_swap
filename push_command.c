@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operators_2.c                            :+:      :+:    :+:   */
+/*   push_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:11:41 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:24:58 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:32:46 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,14 @@ static void	push(t_Stack **stack_receiver, t_Stack **stack_pusher)
 	}
 }
 
-void	pb(t_Stack **stack_a, t_Stack **stack_b, bool print)
+void	pb(t_Stack **stack_a, t_Stack **stack_b)
 {
 	push(stack_a, stack_b);
-	if (print)
-		write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }
 
-void	pa(t_Stack **stack_b, t_Stack **stack_a, bool print)
+void	pa(t_Stack **stack_b, t_Stack **stack_a)
 {
 	push(stack_b, stack_a);
-	if (print)
-		write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operators_3.c                            :+:      :+:    :+:   */
+/*   check_reverse_rotation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:11:17 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:20:51 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:32:11 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@ static void	check_b_position(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	while (*b != cheapest->target_node || *a != cheapest)
 	{
 		if (*b != cheapest->target_node && *a == cheapest)
-		{
-			rb(b, true);
-		}
+			rb(b);
 		if (*b == cheapest->target_node && *a != cheapest)
-		{
-			ra(a, true);
-		}
+			ra(a);
 	}
 }
 
@@ -36,9 +32,9 @@ static void	check_rev_b_position(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	while (*b != cheapest->target_node || *a != cheapest)
 	{
 		if (*b != cheapest->target_node && *a == cheapest)
-			rrb(b, true);
+			rrb(b);
 		else if (*b == cheapest->target_node && *a != cheapest)
-			rra(a, true);
+			rra(a);
 	}
 }
 
@@ -49,9 +45,9 @@ void	check_rotation_both(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	while (*b != cheapest->target_node && *a != cheapest)
 	{
 		if ((*a)->next == cheapest && (*b)->next == cheapest->target_node)
-			ss(a, b, true);
+			ss(a, b);
 		else
-			rr(a, b, true);
+			rr(a, b);
 	}
 	check_b_position(a, b, cheapest);
 	check_index(*a);
@@ -63,7 +59,7 @@ void	check_rev_rotation_both(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	if (!a || !b)
 		return ;
 	while (*b != cheapest->target_node && *a != cheapest)
-		rrr(a, b, true);
+		rrr(a, b);
 	check_rev_b_position(a, b, cheapest);
 	check_index(*a);
 	check_index(*b);

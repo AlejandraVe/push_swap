@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 13:16:59 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:17:00 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:36:52 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	b_to_a_both_above(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 	while (*a != cheapest->target_node && *b != cheapest)
 	{
 		if ((*a)->next == cheapest->target_node && (*b)->next == cheapest)
-			ss(a, b, true);
+			ss(a, b);
 		else
-			rr(a, b, true);
+			rr(a, b);
 	}
 	while (*a != cheapest->target_node || *b != cheapest)
 	{
 		if (*a != cheapest->target_node && *b == cheapest)
-			ra(a, true);
+			ra(a);
 		if (*a == cheapest->target_node && *b != cheapest)
-			rb(b, true);
+			rb(b);
 	}
 }
 
@@ -34,15 +34,15 @@ void	b_above_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 {
 	while (*a != cheapest->target_node && *b != cheapest)
 	{
-		rb(b, true);
-		rra(a, true);
+		rb(b);
+		rra(a);
 	}
 	while (*a != cheapest->target_node || *b != cheapest)
 	{
 		if (*b == cheapest && *a != cheapest->target_node)
-			rra(a, true);
+			rra(a);
 		else if (*a == cheapest->target_node && *b != cheapest)
-			rb(b, true);
+			rb(b);
 	}
 }
 
@@ -56,13 +56,13 @@ void	begin_sort_b(t_Stack *a, t_Stack *b)
 void	b_to_a_both_below(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 {
 	while (*a != cheapest->target_node && *b != cheapest)
-		rrr(a, b, true);
+		rrr(a, b);
 	while (*a != cheapest->target_node || *b != cheapest)
 	{
 		if (*a != cheapest->target_node && *b == cheapest)
-			rra(a, true);
+			rra(a);
 		if (*a == cheapest->target_node && *b != cheapest)
-			rrb(b, true);
+			rrb(b);
 	}
 }
 
@@ -70,16 +70,16 @@ void	b_below_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest)
 {
 	while (*a != cheapest->target_node && *b != cheapest)
 	{
-		rrb(b, true);
-		ra(a, true);
+		rrb(b);
+		ra(a);
 	}
 	while (*a != cheapest->target_node || *b != cheapest)
 	{
 		if (*a == cheapest->target_node && *b != cheapest)
-			rrb(b, true);
+			rrb(b);
 		if (*b == cheapest && *a != cheapest->target_node)
 		{
-			ra(a, true);
+			ra(a);
 		}
 	}
 }
