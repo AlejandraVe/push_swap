@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:49:47 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 12:52:13 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:42:07 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ char	**handle_errors(int argc, char *argv[])
 	string = NULL;
 	if (argc < 2 || !argv[1][0])
 		return (0);
-	else if (argc == 2)
-	{
-		if (one_string(argv) == true)
-			string = ft_split(argv[1], ' ');
-		else
-			return (0);
-	}
 	else if (argc > 2)
 		string = many_strings(argv);
 	if (!string)
