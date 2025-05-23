@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:59:58 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 11:28:34 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:45:46 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,31 +61,4 @@ int	count_string(char **s)
 		i++;
 	}
 	return (i);
-}
-
-bool	first_filter(char *argv[])
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	while (argv[j])
-	{
-		i = 0;
-		while (argv[j][i])
-		{
-			if (argv[j][0] == '-')
-				i++;
-			if (!ft_isdigit(argv[j][i]) || argv[j][i] == '"' || !argv[j][i])
-			{
-				write (1, "Error\n", 6);
-				return (0);
-				break ;
-			}
-			i++;
-		}
-		j++;
-	}
-	return (1);
 }

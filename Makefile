@@ -6,7 +6,7 @@
 #    By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/25 10:32:25 by alvera-v          #+#    #+#              #
-#    Updated: 2025/05/07 13:34:15 by alvera-v         ###   ########.fr        #
+#    Updated: 2025/05/23 11:48:45 by alvera-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,7 @@ SOURCES =	push_swap.c \
 			reverse_rotate_command.c \
 			push_command.c \
 			check_reverse_rotation.c \
-			check_rotation.c \
-			push_swap_costs.c \
-			sort_stack_b.c
+			push_swap_costs.c
 
 MY_OBJECTS = $(SOURCES:.c=.o)
 

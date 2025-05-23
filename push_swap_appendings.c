@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:54:10 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 13:23:30 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:45:22 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,11 @@ void	check_index(t_Stack *stack)
 		stack = stack->next;
 		i++;
 	}
+}
+
+void	begin_sort_b(t_Stack *a, t_Stack *b)
+{
+	check_index(a);
+	check_index(b);
+	check_target_node_b(a, b);
 }

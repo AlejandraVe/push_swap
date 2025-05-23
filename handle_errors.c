@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:49:47 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 11:12:27 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:45:51 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,62 @@ char	**set_string(char **string, char **argv)
 	}
 	string[i] = '\0';
 	return (string);
+}
+
+bool	first_filter(char *argv[])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (argv[j])
+	{
+		i = 0;
+		while (argv[j][i])
+		{
+			if (i == 0 && argv[j][i] == '-')
+			{
+				i = 1;
+			}
+			if (!ft_isdigit(argv[j][i]) || argv[j][i] == '"' || !argv[j][i])
+			{
+				write (1, "Error\n", 6);
+				return (0);
+				break ;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (1);
+}
+
+bool	first_filter_one(char *argv[])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (argv[j])
+	{
+		i = 0;
+		while (argv[j][i])
+		{
+			if (i == 0 && argv[j][i] == '-')
+			{
+				i = 1;
+			}
+			if (!ft_isdigit(argv[j][i]) || argv[j][i] == '"' || !argv[j][i])
+			{
+				write (1, "Error\n", 6);
+				return (1);
+				break ;
+			}
+			i++;
+		}
+		j++;
+	}
+	return (0);
 }

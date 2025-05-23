@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:05:05 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 11:09:50 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:47:13 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct stack
 }					t_Stack;
 int					main(int argc, char *argv[]);
 bool				first_filter(char *argv[]);
+bool				first_filter_one(char *argv[]);
 void				start_sorting(t_Stack *stack_a, t_Stack *stack_b);
 char				**set_string(char **string, char **argv);
 int					ft_atoi(const char *nptr);
@@ -60,16 +61,6 @@ void				check_rev_rotation_both(t_Stack **a, t_Stack **b,
 						t_Stack *cheapest);
 void				check_target_node_a(t_Stack *stack_a, t_Stack *stack_b);
 void				check_properties(t_Stack *stack_a, t_Stack *stack_b);
-void				check_rotation_a_above(t_Stack **a, t_Stack **b,
-						t_Stack *cheapest);
-void				check_rotation_b_above(t_Stack **a, t_Stack **b,
-						t_Stack *cheapest);
-void				b_to_a_both_above(t_Stack **a, t_Stack **b,
-						t_Stack *cheapest);
-void				b_to_a_both_below(t_Stack **a, t_Stack **b,
-						t_Stack *cheapest);
-void				b_below_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest);
-void				b_above_to_a(t_Stack **a, t_Stack **b, t_Stack *cheapest);
 void				begin_sort_b(t_Stack *a, t_Stack *b);
 void				check_target_node_b(t_Stack *a, t_Stack *b);
 void				rr(t_Stack **stack_a, t_Stack **stack_b);
