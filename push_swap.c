@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:40:04 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/20 13:45:12 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/23 10:43:59 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,22 @@ int	main(int argc, char *argv[])
 	t_Stack	*stack_a;
 	t_Stack	*stack_b;
 	char	**string;
-	int		i;
 
-	i = 0;
 	stack_a = NULL;
 	stack_b = NULL;
 	string = NULL;
 	if (!argv[1])
 		return (1);
 	if (argc == 2)
-	{
-		while (argv[1][i])
-		{
-			if (argv[1][i] == '-')
-				i++;
-			if (!ft_isdigit(argv[1][i]) || argv[1][i] == '"' || !argv[1][i])
-			{
-				write (1, "Error\n", 6);
-				return (1);
-			}
-			i++;
-		}
-		return (0);
-	}
+		return (first_filter(argv));
 	string = handle_errors(argc, argv);
-	if (!string)
+	if ((check_duplicates(string)) == false || !string)
 	{
 		write(1, "Error\n", 6);
 		return (1);
 	}
-	if ((check_duplicates(string)) == true)
+	else if ((check_duplicates(string)) == true)
 		initialize_stack_a(&stack_a, string);
-	else
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
 	start_sorting(stack_a, stack_b);
 	free(stack_a);
 	return (0);
