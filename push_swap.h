@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:05:05 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 10:44:34 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:09:50 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ typedef struct stack
 	struct stack	*target_node;
 }					t_Stack;
 int					main(int argc, char *argv[]);
-int					first_filter(char *argv[]);
+bool				first_filter(char *argv[]);
 void				start_sorting(t_Stack *stack_a, t_Stack *stack_b);
-bool				one_string(char *argv[]);
 char				**set_string(char **string, char **argv);
 int					ft_atoi(const char *nptr);
 int					ft_isdigit(int c);
 char				**ft_split(char const *s, char c);
 size_t				ft_strlen(char const *s);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-bool				check_char(char c);
 int					count_string(char **s);
 bool				check_duplicates(char **s);
 char				**many_strings(char *argv[]);

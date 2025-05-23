@@ -6,11 +6,12 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:40:04 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 10:43:59 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:28:02 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
@@ -23,10 +24,12 @@ int	main(int argc, char *argv[])
 	string = NULL;
 	if (!argv[1])
 		return (1);
-	if (argc == 2)
+	else if (argc == 2)
 		return (first_filter(argv));
 	string = handle_errors(argc, argv);
-	if ((check_duplicates(string)) == false || !string)
+	if (!string)
+		return (1);
+	if ((check_duplicates(string)) == false)
 	{
 		write(1, "Error\n", 6);
 		return (1);
