@@ -111,7 +111,5 @@ int	ft_atoi(const char *nptr)
 		ret = ret * 10 + ((long)*nptr - 48);
 		nptr++;
 	}
-	if ((ret * neg) > INT_MAX || (ret * neg) < INT_MIN)
-		return (0);
 	return (ret * neg);
 }
