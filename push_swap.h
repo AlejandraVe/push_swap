@@ -32,6 +32,7 @@ typedef struct stack
 int					main(int argc, char *argv[]);
 void				free_stack(t_Stack **stack);
 bool				first_filter(char *argv[]);
+void				print_error(t_Stack **stack);
 bool				first_filter_one(char *argv[]);
 void				start_sorting(t_Stack *stack_a, t_Stack *stack_b);
 char				**set_string(char **string, char **argv);
