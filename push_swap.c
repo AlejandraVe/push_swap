@@ -48,7 +48,7 @@ int	check_duplicates(t_Stack *stack_a, int n)
 		return (0);
 	while (stack_a)
 	{
-		if (a->value == n)
+		if (stack_a->value == n)
 			return (1);
 		stack_a = stack_a->next;
 	}
