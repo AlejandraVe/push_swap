@@ -62,3 +62,33 @@ int	count_string(char **s)
 	}
 	return (i);
 }
+
+int	ft_isdigit(char c)
+{
+	if (c <= '9' && c >= '0')
+		return (1);
+	return (0);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	long	ret;
+	long	neg;
+
+	ret = 0;
+	neg = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			neg = -1;
+		nptr++;
+	}
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		ret = ret * 10 + ((long)*nptr - 48);
+		nptr++;
+	}
+	return (ret * neg);
+}
