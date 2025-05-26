@@ -42,33 +42,17 @@ void	start_sorting(t_Stack *stack_a, t_Stack *stack_b)
 	}
 }
 
-bool	check_duplicates(char **s)
+int	check_duplicates(t_Stack *stack_a, int n)
 {
-	int	i;
-	int	j;
-	int	*numbers;
-
-	numbers = NULL;
-	numbers = (int *)malloc((count_string(s) + 1) * sizeof(int));
-	j = 0;
-	while (s[j])
+	if (!stack_a)
+		return (0);
+	while (stack_a)
 	{
-		numbers[j] = ft_atoi(s[j]);
-		if (!numbers[j])
-			return (false);
-		j++;
+		if (a->value == n)
+			return (1);
+		stack_a = stack_a->next;
 	}
-	i = 0;
-	while (numbers[i])
-	{
-		j = 1;
-		while (numbers[i] != numbers[i + j] && numbers[i + j])
-			j++;
-		if (numbers[i] == numbers[i + j])
-			return (false);
-		i++;
-	}
-	return (true);
+	return (0);
 }
 
 int	ft_isdigit(char c)
