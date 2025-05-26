@@ -16,13 +16,23 @@ int	main(int argc, char *argv[])
 {
 	t_Stack	*stack_a;
 	t_Stack	*stack_b;
+	int i;
 
 	stack_a = NULL;
 	stack_b = NULL;
+	i = 0;
 	if ((argc == 1) || (argc == 1 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
 		argv = ft_split(argv[1], ' ');
+	else if (argc > 2)
+	{
+		while (argv[i])
+		{
+			argv[i] = argv[i + 1];
+			i++;
+		}
+	}
 	initialize_stack_a(&stack_a, argv);
 	start_sorting(stack_a, stack_b);
 	free_stack(&stack_a);
@@ -40,47 +50,4 @@ void	start_sorting(t_Stack *stack_a, t_Stack *stack_b)
 		else
 			sort_numbers(&stack_a, &stack_b);
 	}
-}
-
-int	check_duplicates(t_Stack *stack_a, int n)
-{
-	if (!stack_a)
-		return (0);
-	while (stack_a)
-	{
-		if (stack_a->value == n)
-			return (1);
-		stack_a = stack_a->next;
-	}
-	return (0);
-}
-
-int	ft_isdigit(char c)
-{
-	if (c <= '9' && c >= '0')
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	long	ret;
-	long	neg;
-
-	ret = 0;
-	neg = 1;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
-		nptr++;
-	if (*nptr == '-' || *nptr == '+')
-	{
-		if (*nptr == '-')
-			neg = -1;
-		nptr++;
-	}
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		ret = ret * 10 + ((long)*nptr - 48);
-		nptr++;
-	}
-	return (ret * neg);
 }
