@@ -20,7 +20,7 @@ int	handle_errors(char *argv)
 		return (1);
 	while (*++argv)
 	{
-		if (!(ft_isdigit(*argv))
+		if (!(ft_isdigit(*argv)))
 			return (1);
 	}
 	return (0);
