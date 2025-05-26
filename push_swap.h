@@ -17,6 +17,7 @@
 # include <stddef.h> // Includes typedef
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct stack
 {
@@ -31,20 +32,16 @@ typedef struct stack
 }					t_Stack;
 int					main(int argc, char *argv[]);
 void				free_stack(t_Stack **stack);
-bool				first_filter(char *argv[]);
 void				print_error(t_Stack **stack);
-bool				first_filter_one(char *argv[]);
 void				start_sorting(t_Stack *stack_a, t_Stack *stack_b);
-char				**set_string(char **string, char **argv);
 int					ft_atoi(const char *nptr);
 int					ft_isdigit(char c);
-char				**ft_split(char const *s, char c);
+char				**ft_split(char *s, char c);
 size_t				ft_strlen(char const *s);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					count_string(char **s);
-int				check_duplicates(t_Stack *stack_a, int n);
-char				**many_strings(char *argv[]);
-int				handle_errors(char *argv);
+int					check_duplicates(t_Stack *stack_a, int n);
+int 				handle_errors(char *argv);
 void				sort_numbers(t_Stack **stack_a, t_Stack **stack_b);
 t_Stack				*find_last(t_Stack *stack);
 void				initialize_stack_a(t_Stack **stack_a, char *argv[]);
