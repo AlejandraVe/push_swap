@@ -44,7 +44,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					count_string(char **s);
 int				check_duplicates(t_Stack *stack_a, int n);
 char				**many_strings(char *argv[]);
-char				**handle_errors(char *argv[]);
+int				handle_errors(char *argv);
 void				sort_numbers(t_Stack **stack_a, t_Stack **stack_b);
 t_Stack				*find_last(t_Stack *stack);
 void				initialize_stack_a(t_Stack **stack_a, char *string[]);
