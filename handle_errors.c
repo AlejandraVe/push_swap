@@ -12,29 +12,18 @@
 
 #include "push_swap.h"
 
-char	**handle_errors(int argc, char *argv[])
+int	handle_errors(char *argv)
 {
-	char	**string;
-
-	string = NULL;
-	if (!argv[1][0])
-		return (0);
-	else if (argc > 2)
+	if (!(*argv == '+' || *argv == '-' || ft_isdigit(*argv)))
+		return (1);
+	if ((*argv == '+' || *argv == '-') && !(ft_isdigit(argv[1])))
+		return (1);
+	while (*++argv)
 	{
-		if (first_filter(argv) == 0)
-		{
-			free (string);
-			return (0);
-		}
-		else if (first_filter(argv) == 1)
-			string = many_strings(argv);
+		if (!(ft_isdigit(*argv))
+			return (1);
 	}
-	if (!string)
-	{
-		free (string);
-		return (0);
-	}
-	return (string);
+	return (0);
 }
 
 char	**many_strings(char *argv[])
