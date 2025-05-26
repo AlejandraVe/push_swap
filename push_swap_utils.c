@@ -1,95 +1,94 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 11:18:37 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 12:59:44 by alvera-v         ###   ########.fr       */
+/*   Created: 2025/05/07 12:59:58 by alvera-v          #+#    #+#             */
+/*   Updated: 2025/05/23 11:45:46 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	count_chars(char const *s, char c)
+size_t	ft_strlen(char const *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	char	*ret;
+
+	i = 0;
+	if (!s || start >= ft_strlen(s))
+	{
+		ret = (char *)malloc(1);
+		if (!ret)
+			return (NULL);
+		ret[0] = '\0';
+		return (ret);
+	}
+	if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	ret = (char *)malloc(len + 1);
+	if (!ret)
+		return (NULL);
+	while (len > 0 && len--)
+	{
+		ret[i] = s[start];
+		i++;
+		start++;
+	}
+	ret[i] = '\0';
+	return (ret);
+}
+
+int	count_string(char **s)
 {
 	int	i;
-	int	j;
-	int	new_word;
 
 	i = 0;
-	j = 0;
-	new_word = 0;
 	while (s[i])
 	{
-		if (s[i] != c && new_word == 0)
-		{
-			new_word = 1;
-			j++;
-		}
-		else if (s[i] == c)
-		{
-			new_word = 0;
-		}
 		i++;
 	}
-	return (j);
-}
-
-static int	search_c(char const *s, char c, int i)
-{
-	while (s[i] && s[i] != c)
-		i++;
 	return (i);
 }
 
-static int	next_char(char const *s, char c, int i)
+int	ft_isdigit(char c)
 {
-	while (s[i] && s[i] == c)
-		i++;
-	return (i);
+	if (c <= '9' && c >= '0')
+		return (1);
+	return (0);
 }
 
-static void	free_string(char **string, int i)
+int	ft_atoi(const char *nptr)
 {
-	int	j;
+	long	ret;
+	long	neg;
 
-	j = 0;
-	while (j < i)
+	ret = 0;
+	neg = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == 32)
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
 	{
-		free(string[j]);
-		j++;
+		if (*nptr == '-')
+			neg = -1;
+		nptr++;
 	}
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		i;
-	int		j;
-	int		number_of_chars;
-	char	**string;
-
-	i = 0;
-	j = 0;
-	number_of_chars = count_chars(s, c);
-	if (!number_of_chars)
-		exit(1);
-	string = (char **)malloc((number_of_chars + 1) * sizeof(char *));
-	if (!string)
-		return (NULL);
-	while (i < number_of_chars)
+	while (*nptr >= '0' && *nptr <= '9')
 	{
-		j = next_char(s, c, j);
-		string[i] = ft_substr(s, j, search_c(s, c, j) - j);
-		if (!string[i])
-		{
-			free_string(string, i);
-			return (NULL);
-		}
-		j = search_c(s, c, j);
-		i++;
+		ret = ret * 10 + ((long)*nptr - 48);
+		nptr++;
 	}
-	string[i] = NULL;
-	return (string);
+	return (ret * neg);
 }
