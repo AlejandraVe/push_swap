@@ -44,7 +44,7 @@ void	initialize_stack_a(t_Stack **stack_a, char *argv[])
 	i = 0;
 	if (!stack_a)
 		return ;
-	while (string[i])
+	while (argv[i])
 	{
 		if (handle_errors(argv[i]) == 1)
 			print_error(stack_a);
