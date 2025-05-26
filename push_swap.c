@@ -19,13 +19,13 @@ int	main(int argc, char *argv[])
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc == 1) || (argc == 1 && !argv[1][0]))
+	if ((argc == 1) || (argc == 1 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
 		argv = ft_split(argv[1], ' ');
 	initialize_stack_a(&stack_a, argv);
 	start_sorting(stack_a, stack_b);
-	free_stack(stack_a);
+	free_stack(&stack_a);
 	return (0);
 }
 
