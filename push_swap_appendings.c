@@ -36,7 +36,7 @@ static void	append_node(t_Stack **stack, int n)
 	}
 }
 
-void	initialize_stack_a(t_Stack **stack_a, char *string[])
+void	initialize_stack_a(t_Stack **stack_a, char *argv[])
 {
 	long	n;
 	int	i;
