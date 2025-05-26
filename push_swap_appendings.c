@@ -38,7 +38,7 @@ static void	append_node(t_Stack **stack, int n)
 
 void	initialize_stack_a(t_Stack **stack_a, char *string[])
 {
-	int	n;
+	long	n;
 	int	i;
 
 	i = 0;
@@ -46,13 +46,24 @@ void	initialize_stack_a(t_Stack **stack_a, char *string[])
 		return ;
 	while (string[i])
 	{
-		n = ft_atoi(string[i]);
-		append_node(stack_a, n);
-		i++;
+		if (handle_errors(argv[i]) == 1)
+			print_error(stack_a);
+		n = ft_atoi(argv[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			print_error(stack_a);
+		if (check_duplicate(*stack_a, (int)n))
+			print_error(stack_a);
+		append_node(stack_a, (int)n);
 	}
 	free (string);
 }
 
+void	print_error(t_Stack **stack)
+{
+	free_stack(stack);
+	write (1, "Error\n", 6);
+	exit (1);
+}
 t_Stack	*find_last(t_Stack *stack)
 {
 	if (!stack)
