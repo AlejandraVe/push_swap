@@ -47,7 +47,7 @@ char				**many_strings(char *argv[]);
 int				handle_errors(char *argv);
 void				sort_numbers(t_Stack **stack_a, t_Stack **stack_b);
 t_Stack				*find_last(t_Stack *stack);
-void				initialize_stack_a(t_Stack **stack_a, char *string[]);
+void				initialize_stack_a(t_Stack **stack_a, char *argv[]);
 bool				check_sorted(t_Stack *stack);
 int					stack_len(t_Stack *stack);
 t_Stack				*find_max(t_Stack *stack);
