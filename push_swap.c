@@ -16,27 +16,16 @@ int	main(int argc, char *argv[])
 {
 	t_Stack	*stack_a;
 	t_Stack	*stack_b;
-	char	**string;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	string = NULL;
-	if (!argv[1])
+	if (argc == 1) || (argc == 1 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		return (first_filter_one(argv));
-	string = handle_errors(argc, argv);
-	if (!string)
-		return (1);
-	if ((check_duplicates(string)) == false)
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	else if ((check_duplicates(string)) == true)
-		initialize_stack_a(&stack_a, string);
+		argv = ft_split(argv[1], ' ');
+	initialize_stack_a(&stack_a, argv);
 	start_sorting(stack_a, stack_b);
-	free(stack_a);
+	free_stack(stack_a);
 	return (0);
 }
 
@@ -82,12 +71,10 @@ bool	check_duplicates(char **s)
 	return (true);
 }
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char c)
 {
 	if (c <= '9' && c >= '0')
-	{
 		return (1);
-	}
 	return (0);
 }
 
