@@ -55,7 +55,6 @@ void	initialize_stack_a(t_Stack **stack_a, char *argv[])
 			print_error(stack_a);
 		append_node(stack_a, (int)n);
 	}
-	free (string);
 }
 
 void	free_stack(t_Stack **stack)
