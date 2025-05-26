@@ -17,6 +17,8 @@ static void	append_node(t_Stack **stack, int n)
 	t_Stack	*node;
 	t_Stack	*last_node;
 
+	if (!stack)
+		return ;
 	node = malloc(sizeof(t_Stack));
 	if (!node)
 		return ;
@@ -54,33 +56,10 @@ void	initialize_stack_a(t_Stack **stack_a, char *argv[])
 		if (check_duplicates(*stack_a, (int)n) == 1)
 			print_error(stack_a);
 		append_node(stack_a, (int)n);
+		i++;
 	}
 }
 
-void	free_stack(t_Stack **stack)
-{
-	t_Stack *temp;
-	t_Stack *top;
-
-	if (!stack)
-		return ;
-	top = *stack;
-	while (top)
-	{
-		temp = top->next;
-		top->value = 0;
-		free(top);
-		top = temp;
-	}
-	*stack = NULL;
-}
-
-void	print_error(t_Stack **stack)
-{
-	free_stack(stack);
-	write (1, "Error\n", 6);
-	exit (1);
-}
 t_Stack	*find_last(t_Stack *stack)
 {
 	if (!stack)
