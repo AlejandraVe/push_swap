@@ -51,7 +51,7 @@ void	initialize_stack_a(t_Stack **stack_a, char *string[])
 		n = ft_atoi(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
 			print_error(stack_a);
-		if (check_duplicate(*stack_a, (int)n))
+		if (check_duplicates(*stack_a, (int)n) == 1)
 			print_error(stack_a);
 		append_node(stack_a, (int)n);
 	}
