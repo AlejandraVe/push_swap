@@ -58,6 +58,24 @@ void	initialize_stack_a(t_Stack **stack_a, char *string[])
 	free (string);
 }
 
+void	free_stack(t_Stack **stack)
+{
+	t_Stack *temp;
+	t_Stack *top;
+
+	if (!stack)
+		return ;
+	top = *stack;
+	while (top)
+	{
+		temp = top->next;
+		top->value = 0;
+		free(top);
+		top = temp;
+	}
+	*stack = NULL;
+}
+
 void	print_error(t_Stack **stack)
 {
 	free_stack(stack);
