@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:49:47 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 11:45:51 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:30:19 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,30 @@ int	handle_errors(char *argv)
 	return (0);
 }
 
-void	print_error(t_Stack **stack)
+void	print_error(t_Stack **stack, char **argv, int should_free_argv)
 {
-	free_stack(stack);
-	write (1, "Error\n", 6);
-	exit (1);
+	if (stack)
+		free_stack(stack);
+	if (should_free_argv)
+		free_split(argv);
+	write(1, "Error\n", 6);
+	exit(1);
 }
 
 void	free_stack(t_Stack **stack)
 {
-	t_Stack *temp;
-	t_Stack *top;
+	t_Stack	*temp;
+	t_Stack	*node;
 
 	if (!stack)
 		return ;
-	top = *stack;
-	while (top)
+	node = *stack;
+	while (node)
 	{
-		temp = top->next;
-		top->value = 0;
-		free(top);
-		top = temp;
+		temp = node->next;
+		node->value = 0;
+		free(node);
+		node = temp;
 	}
 	*stack = NULL;
 }

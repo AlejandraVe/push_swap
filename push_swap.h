@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:05:05 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 11:47:13 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:30:26 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stddef.h> // Includes typedef
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct stack
 {
@@ -32,7 +31,10 @@ typedef struct stack
 }					t_Stack;
 int					main(int argc, char *argv[]);
 void				free_stack(t_Stack **stack);
-void				print_error(t_Stack **stack);
+void				print_error(t_Stack **stack, char **argv,
+						int should_free_argv);
+void				free_string(char **string);
+void				free_split(char **split);
 void				start_sorting(t_Stack *stack_a, t_Stack *stack_b);
 int					ft_atoi(const char *nptr);
 int					ft_isdigit(char c);
@@ -41,10 +43,11 @@ size_t				ft_strlen(char const *s);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					count_string(char **s);
 int					check_duplicates(t_Stack *stack_a, int n);
-int 				handle_errors(char *argv);
+int					handle_errors(char *argv);
 void				sort_numbers(t_Stack **stack_a, t_Stack **stack_b);
 t_Stack				*find_last(t_Stack *stack);
-void				initialize_stack_a(t_Stack **stack_a, char *argv[]);
+void				initialize_stack_a(t_Stack **stack_a, char *argv[],
+						int free_argv);
 bool				check_sorted(t_Stack *stack);
 int					stack_len(t_Stack *stack);
 t_Stack				*find_max(t_Stack *stack);

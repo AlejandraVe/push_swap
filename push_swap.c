@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:40:04 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 11:42:15 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:30:50 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,40 @@ int	main(int argc, char *argv[])
 {
 	t_Stack	*stack_a;
 	t_Stack	*stack_b;
-	int i;
+	int		should_free_argv;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	i = 0;
+	should_free_argv = 0;
 	if ((argc == 1) || (argc == 1 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	else if (argc > 2)
 	{
-		while (argv[i])
-		{
-			argv[i] = argv[i + 1];
-			i++;
-		}
+		argv = ft_split(argv[1], ' ');
+		initialize_stack_a(&stack_a, argv, should_free_argv);
+		should_free_argv = 1;
 	}
-	initialize_stack_a(&stack_a, argv);
+	else if (argc > 2)
+		initialize_stack_a(&stack_a, &argv[1], 0);
 	start_sorting(stack_a, stack_b);
-	free_stack(&stack_a);
+	if (should_free_argv)
+		free_split(argv);
 	return (0);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	if (!split)
+		return ;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
 
 void	start_sorting(t_Stack *stack_a, t_Stack *stack_b)
@@ -50,4 +63,5 @@ void	start_sorting(t_Stack *stack_a, t_Stack *stack_b)
 		else
 			sort_numbers(&stack_a, &stack_b);
 	}
+	free_stack(&stack_a);
 }

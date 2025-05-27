@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 11:18:37 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/07 12:59:44 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:32:13 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,17 @@ static int	next_char(char const *s, char c, int i)
 	return (i);
 }
 
-static void	free_string(char **string, int i)
+void	free_string(char **string)
 {
 	int	j;
 
 	j = 0;
-	while (j < i)
+	while (string[j])
 	{
 		free(string[j]);
 		j++;
 	}
+	free(string);
 }
 
 char	**ft_split(char *s, char c)
@@ -73,9 +74,7 @@ char	**ft_split(char *s, char c)
 	i = 0;
 	j = 0;
 	number_of_chars = count_chars(s, c);
-	if (!number_of_chars)
-		exit(1);
-	string =  (char **)malloc((number_of_chars + 1) * sizeof(char *));
+	string = (char **)malloc((number_of_chars + 1) * sizeof(char *));
 	if (!string)
 		return (NULL);
 	while (i < number_of_chars)
@@ -84,7 +83,7 @@ char	**ft_split(char *s, char c)
 		string[i] = ft_substr(s, j, search_c(s, c, j) - j);
 		if (!string[i])
 		{
-			free_string(string, i);
+			free_string(string);
 			return (NULL);
 		}
 		j = search_c(s, c, j);
