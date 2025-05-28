@@ -6,7 +6,7 @@
 /*   By: alvera-v <alvera-v@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 12:59:58 by alvera-v          #+#    #+#             */
-/*   Updated: 2025/05/23 11:45:46 by alvera-v         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:36:42 by alvera-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_isdigit(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	long	ret;
 	long	neg;
